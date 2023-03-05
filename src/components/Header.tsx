@@ -1,7 +1,6 @@
 function Header() {
 
     function handleScrollElement(e: any) {
-        // document.getElementById('')
         switch (e.target.value) {
             case 'inicio':
                 document.getElementById('home')?.scrollIntoView(true)
@@ -22,19 +21,19 @@ function Header() {
         <header>
             <img src="" alt="logo" />
             <nav>
-                <button id='buttonHome'>
+                <button value='inicio' onClick={e => handleScrollElement(e)} id='buttonHome'>
                     Inicio
                 </button>
 
-                <button id='buttonEvents'>
+                <button value='eventos' onClick={e => handleScrollElement(e)} id='buttonEvents'>
                     Eventos
                 </button>
 
-                <button id='buttonCalendar'>
+                <button value='calendario' onClick={e => handleScrollElement(e)} id='buttonCalendar'>
                     Calendário
                 </button>
 
-                <button id='buttonAbout'>
+                <button value='sobre' onClick={e => handleScrollElement(e)} id='buttonAbout'>
                     Sobre
                 </button>
             </nav>
