@@ -12,7 +12,7 @@ function HomeMain(){
             </div>        
           </div>
           <div className='home-images'>
-
+            <img src="placeholder-image.jpg"/>
           </div>
         </section>
     )

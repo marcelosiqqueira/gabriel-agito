@@ -1,13 +1,13 @@
 function About(){
     return(
         <section id='about'>
-          <img src="" alt="img-gabriel" />
-          <div className='about-description'>
-            <p>Gabriel 
-              <span>
-                descrição do gabriel
-              </span>
-            </p>
+          <div>
+            <img src="placeholder-profile.jpg" alt="img-gabriel" />
+            <div className='about-description'>
+              <p><span>Gabriel</span>
+                  descrição do gabriel
+              </p>
+            </div>
           </div>
           
           <ul>

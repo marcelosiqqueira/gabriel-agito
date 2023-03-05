@@ -18,7 +18,7 @@ function Events(){
         <section id='events'>
           <div className='events-container'>
             <div className="events-images">
-
+              <img src="placeholder-image.jpg"/>
             </div>
             <div className="events-description">
 
