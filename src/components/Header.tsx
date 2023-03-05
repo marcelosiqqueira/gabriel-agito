@@ -4,16 +4,16 @@ function Header() {
         // document.getElementById('')
         switch (e.target.value) {
             case 'inicio':
-                document.getElementById('')
+                document.getElementById('home')?.scrollIntoView(true)
                 break
             case 'eventos':
-                document.getElementById('')
+                document.getElementById('events')?.scrollIntoView(true)
                 break
             case 'calendario':
-                document.getElementById('')
+                document.getElementById('events')?.scrollIntoView(true)
                 break
             case 'sobre':
-                document.getElementById('')
+                document.getElementById('about')?.scrollIntoView(true)
                 break
         }
     }
