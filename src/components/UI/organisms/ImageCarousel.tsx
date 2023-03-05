@@ -1,25 +1,23 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
 export default function ImageCarousel() {
-    const testImages = ['https://unsplash.com/pt-br/fotografias/DbJQfU2jsZA', 'https://unsplash.com/pt-br/fotografias/6kajEqr84iY', 'https://unsplash.com/pt-br/fotografias/Wh4C4FQU_ks',
-        'https://unsplash.com/pt-br/fotografias/eqJwTXMeWxw', 'https://unsplash.com/pt-br/fotografias/EhJQ1z96ypk']
+    const testImages = ['https://source.unsplash.com/random', 'https://source.unsplash.com/random', 'https://source.unsplash.com/random', 'https://source.unsplash.com/random', 'https://source.unsplash.com/random', 'https://source.unsplash.com/random']
+    const [carouselIndex, setCarouselIndex] = useState(0)
 
-    function setCarouselImages(number: number): any {
-        const imgList: any = []
-        for (let i = 0; i < number; i++) {
-            imgList.push(<img src='https://source.unsplash.com/random' alt="image" style={{ width: '200px', border: '1px solid red' }} />)
-        }
-        return (imgList)
+    function handleButtonClick(e: any) {
+        if (e.target.value === 'left')
+            setCarouselIndex(carouselIndex - 1)
+
+        if (e.target.value === 'right')
+            setCarouselIndex(carouselIndex + 1)
     }
 
-    function handleButtonClick() {
-
-    }
     return (
+        ///////////// Remover style inline da img
         <div id="image-carousel">
-            <img src="" alt="" />
-            <button className="button-carousel-left" onClick={e => handleButtonClick}></button>
-            <button className="button-carousel-right" onClick={e => handleButtonClick}></button>
+            <img src={testImages[carouselIndex]} style={{ width: '200px', border: '1px solid red' }} alt="" />
+            <button value="left" className="button-carousel-left" onClick={e => handleButtonClick(e)}>Button Carousel</button>
+            <button value="right" className="button-carousel-right" onClick={e => handleButtonClick(e)}>Button Carousel</button>
         </div>
     )
 }
