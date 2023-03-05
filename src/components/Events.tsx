@@ -3,15 +3,13 @@ import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
 import React, {useState} from 'react';
 
 function Events(){
-    const [currentOutlet, changeOutlet] = useState('coverages');
+    const [currentOutlet, setOutlet] = useState('coverages');
 
     function handleCurrentOutlet(): void{
       if(currentOutlet === 'coverages')
-      {
-        changeOutlet('agenda');
-      }else{
-        changeOutlet('coverages')
-      }
+        setOutlet('agenda');
+      else
+        setOutlet('coverages')
     }
 
     return(
