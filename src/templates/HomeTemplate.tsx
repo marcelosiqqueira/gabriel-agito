@@ -7,11 +7,11 @@ import About from '../components/About'
 function HomeTemplate() {
   return (
     <div className='container'>
-      <Header/>
+      <Header />
       <main>
-        <HomeMain/>
-        <Events/>
-        <About/>
+        <HomeMain />
+        <Events />
+        <About />
       </main>
     </div>
   )
