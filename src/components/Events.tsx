@@ -1,6 +1,6 @@
 import "../styles/home.css"
 import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
-import React, { useState } from 'react';
+import React, {useEffect,  useState } from 'react';
 import ImageCarousel from "./UI/organisms/ImageCarousel";
 
 function Events() {
