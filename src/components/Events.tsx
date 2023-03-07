@@ -8,7 +8,7 @@ function Events() {
 
   function handleCurrentOutlet(): void {
     if (currentOutlet === 'coverages')
-      setOutlet('agenda');
+      setOutlet('schedule');
     else
       setOutlet('coverages')
   }
@@ -36,7 +36,7 @@ function Events() {
           </Link>
 
           <Link state={currentOutlet} to={`/${currentOutlet}`}>
-            <button className='agenda-button' onClick={() => handleCurrentOutlet()}>
+            <button className='schedule-button' onClick={() => handleCurrentOutlet()}>
               Agenda
             </button>
           </Link>

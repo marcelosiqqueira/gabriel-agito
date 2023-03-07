@@ -1,6 +1,6 @@
 import CustomList from "../components/UI/organisms/CustomList/CustomList";
 
-function Agenda() {
+function Schedule() {
     return (
         <>
             <CustomList></CustomList>
@@ -8,4 +8,4 @@ function Agenda() {
     )
 }
 
-export default Agenda;
+export default Schedule;

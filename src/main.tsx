@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import Home from './routes/Home'
 import '/src/styles/global.css'
 import Coverages from './routes/Coverages'
-import Agenda from './routes/Agenda'
+import Schedule from './routes/Schedule'
 
 import {
   createBrowserRouter,
@@ -11,18 +11,18 @@ import {
 } from 'react-router-dom';
 
 
-const router = createBrowserRouter([  
+const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
     children: [
       {
-        path:"coverages",
-        element: <Coverages/>
+        path: "coverages",
+        element: <Coverages />
       },
       {
-        path:"agenda",
-        element: <Agenda/>
+        path: "schedule",
+        element: <Schedule />
       }
     ]
   },
