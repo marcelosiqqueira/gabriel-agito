@@ -1,9 +1,13 @@
 import "../styles/home.css"
 import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 function Events(){
     const [currentOutlet, changeOutlet] = useState('coverages');
+
+    useEffect(() => {
+      <Link to={'/coverages'}></Link>
+    },[])
 
     function handleCurrentOutlet(): void{
       if(currentOutlet === 'coverages')
@@ -25,7 +29,6 @@ function Events(){
             </div>
           </div>
 
-          {/* COMPONENT */}
           <div className='events-container2'>
             
             <div className='header-buttons'>
@@ -45,6 +48,7 @@ function Events(){
             </div>
             
             <div className="events-list">
+
               <Outlet/>
             </div>
             <div className="events-buttons">
