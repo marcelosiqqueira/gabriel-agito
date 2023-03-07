@@ -39,6 +39,9 @@ header, .home-images img, .events-images img, #about > div {
     background-color: var(--elements-gray);
 }
 
+#about div img {
+    border-radius: 50%;
+}
 
 #about ul {
     display: flex;
@@ -110,9 +113,8 @@ header, .home-images img, .events-images img, #about > div {
         align-items: center;
         gap: 40px;
     }
-    img[src="placeholder-profile.jpg"]{
+    #about div img {
         width: 200px;
-        border-radius: 50%;
     }
 
     .about-description {
@@ -129,8 +131,6 @@ header, .home-images img, .events-images img, #about > div {
 
     }
 
-
-
     #about ul li img {
         width: 40px;
     }
@@ -141,6 +141,31 @@ header, .home-images img, .events-images img, #about > div {
 
 /* CSS Mobile (Landscape)*/
 @media (min-width: 481px) and (max-width: 767px) {
+
+    /* 'home' section */
+    .home-images img{
+        width: 100vw;
+    }
+
+
+    /* 'about' section */
+    #about div img {
+        width: 300px;
+    }
+
+}
+
+/* CSS Tablets (portrait) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    
+    /* 'about' section */
+    #about div img {
+        width: 300px;
+    }
+}
+
+/* CSS Laptop */
+@media (min-width: 1025px) and (max-width: 1279px) {
 
 }
   
@@ -211,6 +236,7 @@ header, .home-images img, .events-images img, #about > div {
         padding: 50px;
         border-radius: 8px;
         width: 80%;
+        margin: 0 auto;
     }
 
     #about div img {
