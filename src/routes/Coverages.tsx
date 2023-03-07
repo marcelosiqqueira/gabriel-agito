@@ -1,8 +1,10 @@
-function Coverages(){
-    return(
-        <p>
-            teste cobertura
-        </p>
+import CustomList from "../components/UI/organisms/CustomList/CustomList";
+
+function Coverages() {
+    return (
+        <>
+            <CustomList></CustomList>
+        </>
     )
 }
 
