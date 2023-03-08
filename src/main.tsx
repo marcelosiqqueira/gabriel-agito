@@ -17,7 +17,7 @@ const router = createBrowserRouter([
     element: <Home />,
     children: [
       {
-        path: "coverages",
+        index: true,
         element: <Coverages />
       },
       {

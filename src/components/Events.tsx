@@ -1,17 +1,8 @@
 import "../styles/home.css"
-import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
-import React, {useEffect,  useState } from 'react';
+import { Outlet, Link } from "react-router-dom";
 import ImageCarousel from "./UI/organisms/ImageCarousel";
 
 function Events() {
-  const [currentOutlet, setOutlet] = useState('coverages');
-
-  function handleCurrentOutlet(): void {
-    if (currentOutlet === 'coverages')
-      setOutlet('schedule');
-    else
-      setOutlet('coverages')
-  }
 
   return (
     <section id='events'>
@@ -25,18 +16,16 @@ function Events() {
       </div>
       {/* COMPONENT */}
       <div className='events-container2'>
-
         <div className='header-buttons'>
 
-          <Link state={currentOutlet} to={`/${currentOutlet}`}>
-            <button className='coverages-button' onClick={() => handleCurrentOutlet()}>
+          <Link to={''}>
+            <button className='coverages-button' >
               Coberturas
-              <Link to={`/:${currentOutlet}`} />
             </button>
           </Link>
 
-          <Link state={currentOutlet} to={`/${currentOutlet}`}>
-            <button className='schedule-button' onClick={() => handleCurrentOutlet()}>
+          <Link to={'/schedule'}>
+            <button className='schedule-button' >
               Agenda
             </button>
           </Link>
