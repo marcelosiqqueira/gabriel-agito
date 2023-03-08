@@ -13,11 +13,10 @@ export default function ImageCarousel() {
     }
 
     return (
-        ///////////// Remover style inline da img
         <div id="image-carousel">
-            <img src={testImages[carouselIndex]} style={{ width: '200px', border: '1px solid red' }} alt="" />
-            <button value="left" className="button-carousel-left" onClick={e => handleButtonClick(e)}>Button Carousel</button>
-            <button value="right" className="button-carousel-right" onClick={e => handleButtonClick(e)}>Button Carousel</button>
+            <img src={testImages[carouselIndex]} alt="" />
+            <button value="left" className="button-carousel-left" onClick={e => handleButtonClick(e)}><span>Previous image</span></button>
+            <button value="right" className="button-carousel-right" onClick={e => handleButtonClick(e)}><span>Next image</span></button>
         </div>
     )
 }

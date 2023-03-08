@@ -1,0 +1,11 @@
+
+#eventsList {
+    background-color: var(--elements-gray);
+}
+
+/* CSS Mobile (portrait) */
+@media (max-width: 480px) {
+    #eventsList {
+        padding: 0 7px 7px 7px;
+    }
+}    

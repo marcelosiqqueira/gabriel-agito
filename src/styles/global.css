@@ -6,3 +6,15 @@
     border: none;
     font-family: 'Poppins', sans-serif;
 }
+
+:root {
+    --primary-purple: #16002D;
+    --secondary-purple: #6102D5;
+    --transparency-purple: rgba(97, 2, 213, 0.5);
+    --elements-purple: #2C0063;
+    --elements-white: #FFFFFF;
+    --elements-gray: #D9D9D9;
+    --elements-border: #C1C1C1;
+    --unfocused-gray: #B4B4B4;
+    --shadow: 5px 5px 5px rgba(20, 20, 20, 0.2);
+}
