@@ -1,6 +1,6 @@
-import "../styles/home.css"
+import '../../../../styles/home.css'
 import { Outlet, Link } from "react-router-dom";
-import ImageCarousel from "./UI/organisms/ImageCarousel";
+import ImageCarousel from "../ImageCarousel";
 
 function Events() {
 
