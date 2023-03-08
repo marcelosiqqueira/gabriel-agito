@@ -1,3 +1,28 @@
 .list-item {
   list-style-type: none;
+  height: 100px;
+  margin: 7px 0;
+  padding: 10px 20px;
+
+  background-color: var(--elements-white);
+  border: 5px solid var(--elements-border);
+  border-radius: 8px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  transition: .3s;
+}
+
+.list-item div {
+  display: flex;
+  align-items:center;
+  gap: 10px;
+  padding-bottom: 5px;
+}
+
+.list-item:hover {
+  background-color: var(--elements-border);
+  cursor: pointer;
 }
