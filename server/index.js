@@ -1,155 +1,45 @@
-const fs = require('fs').promises;
-const path = require('path');
-const process = require('process');
-const {authenticate} = require('@google-cloud/local-auth');
-const {google} = require('googleapis');
 
-// If modifying these scopes, delete token.json.
-const SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly',
-                'https://www.googleapis.com/drive/v3/files'];
-// The file token.json stores the user's access and refresh tokens, and is
-// created automatically when the authorization flow completes for the first
-// time.
-const TOKEN_PATH = path.join(process.cwd(), 'token.json');
-const CREDENTIALS_PATH = path.join(process.cwd(), 'credentials.json');
+const { google } = require('googleapis');
+const { OAuth2 } = google.auth;
 
-/**
- * Reads previously authorized credentials from the save file.
- *
- * @return {Promise<OAuth2Client|null>}
- */
-async function loadSavedCredentialsIfExist() {
-  try {
-    const content = await fs.readFile(TOKEN_PATH);
-    const credentials = JSON.parse(content);
-    return google.auth.fromJSON(credentials);
-  } catch (err) {
-    return null;
-  }
-}
 
-/**
- * Serializes credentials to a file comptible with GoogleAUth.fromJSON.
- *
- * @param {OAuth2Client} client
- * @return {Promise<void>}
- */
-async function saveCredentials(client) {
-  const content = await fs.readFile(CREDENTIALS_PATH);
-  const keys = JSON.parse(content);
-  const key = keys.installed || keys.web;
-  const payload = JSON.stringify({
-    type: 'authorized_user',
-    client_id: key.client_id,
-    client_secret: key.client_secret,
-    refresh_token: client.credentials.refresh_token,
-  });
-  await fs.writeFile(TOKEN_PATH, payload);
-}
+// tentando usar direto em variavel sem usar o credentials (ta desatualizado tb)
+const clientId = '871579058932-i5jt1bb76404724il1671h2tfae0o43v.apps.googleusercontent.com';
+const clientSecret = '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';
+const redirectUri = 'http://localhost';
+const scope = 'https://www.googleapis.com/auth/photoslibrary.readonly';
+// const code = '4%2F0AWtgzh4XGvidI2e5mLFRuG31Sx04x2ceav9VAL4-Ci6N_9zsb_OFuKgilPkOTRPoYbGk8g';
 
-/**
- * Load or request or authorization to call APIs.
- *
- */
-async function authorize() {
-  let client = await loadSavedCredentialsIfExist();
-  if (client) {
-    return client;
-  }
-  client = await authenticate({
-    scopes: SCOPES,
-    keyfilePath: CREDENTIALS_PATH,
-  });
-  if (client.credentials) {
-    await saveCredentials(client);
-  }
-  return client;
-}
+const oAuth2Client = new OAuth2(clientId, clientSecret, redirectUri);
+const authorizeUrl = oAuth2Client.generateAuthUrl({
+  access_type: 'offline',
+  scope: scope,
+});
 
-/**
- * Lists the names and IDs of up to 10 files.
- * @param {OAuth2Client} authClient An authorized OAuth2 client.
- */
-async function listFiles(authClient) {
-  const drive = google.drive({version: 'v3', auth: authClient});
-  const res = await drive.files.list({
-    pageSize: 10,
-    fields: 'nextPageToken, files(id, name)',
-  });
-  const files = res.data.files;
-  if (files.length === 0) {
-    console.log('No files found.');
-    return;
-  }
-  console.log('Files:' + typeof files);
-  files.map((file) => {
-    console.log(`${file.name} (${file.id})`);
-  });
-}
+//ESSE CONSOLE RETORNA http://localhost/?code=4%2F0AWtgzh7QrrlKJyLauoBSAnx_Jwvd0fiSmqeAtxiVTDVMqlQYFVKUkDbl00NPidGBGpmE5A&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fphotoslibrary.readonly
+// onde o code= é o código de autorização pra conseguir o acessToken, q usa pra fazer requisição da api, é até onde cheguei fazer funcionar
 
-/**
- * Seach for a file name and return file id .
- * @param {OAuth2Client} authClient An authorized OAuth2 client.
- */
-
-async function searchFile(authClient) {
-    const drive = google.drive({version: 'v3', auth: authClient});
-    
-      const res = await drive.files.list({
-    q: "name='Eventos' and mimeType='application/vnd.google-apps.folder'",
-        fields: 'files(id, name)',
-        // spaces: 'drive',
-      }, (err, res) => {
-        if (err) return console.log(`Erro ao listar arquivos: ${err}`);
-        let files = [];
-        files = res.data.files;
-        if (files.length) {
-          console.log(`Encontrou ${files.length} pastas:`);
-          files.forEach((file) => {
-            console.log(`${file.name} (${file.id})`);
-          });
-        return files;
-        } else {
-          console.log('Nenhuma pasta encontrada com esse nome.');
-        }
-      });
-}
-
-/**
- * Seach for a file name and return file id .
- * @param {OAuth2Client} authClient An authorized OAuth2 client.
- */
-
-async function searchFilesByFolderID(authClient) {
-    const drive = google.drive({ version: 'v3', auth: authClient });
-    const parentFolderId = '1BuxXQvrTRZn1VSBYdcljzlBIrb6uEyYD';
-    const res = await drive.files.list({
-      q: `'${parentFolderId}' in parents and mimeType='application/vnd.google-apps.folder'`,
-      fields: 'files(id, name)',
-    });
-    
-    const folders = res.data.files;
-    console.log(`Encontrado(s) ${folders.length} pasta(s) dentro de ${parentFolderId}:`);
-    folders.forEach((folder) => {
-      console.log(`${folder.name} (${folder.id})`);
-    });
-    
-    return folders;
-  }
+console.log('Por favor, visite esta URL para autorizar o aplicativo:', authorizeUrl);
 
 
 
-// authorize().then(listFiles).catch(console.error);
-// const files = authorize().then(searchFile);
-// console.log(files)
-
-const folders = authorize()
-    .then(searchFilesByFolderID)
-    .catch(console.error);
-
-folders.then((folder) => {
-    console.log(folder)
-}).catch(e => console.error(e))
-
-
-
+// async function getAccessToken(code) {
+//     const { tokens } = await oauth2Client.getToken(code);
+//     return tokens.access_token;
+//   }
+  
+  // Exemplo de como obter o código de autorização.
+  // Este código deve ser obtido a partir de uma URL de autorização gerada pelo OAuth2Client.
+  // A URL deve ser aberta em um navegador para que o usuário possa autorizar o acesso.
+  // Uma vez que o usuário conceda a autorização, o código será retornado na query string da URL.
+  // Por exemplo: http://localhost:3000/oauthcallback?code=<codigo>
+//   const code = "seu-codigo-de-autorizacao";
+  
+//   const accessToken = await getAccessToken(code);
+//   console.log(`Access token: ${accessToken}`);
+  
+  // Agora você pode usar o Access Token para fazer solicitações à API do Google Photos.
+  // Por exemplo:
+//   const photos = google.photoslibrary({ version: "v1", auth: accessToken });
+//   const albums = await photos.albums.list();
+//   console.log(albums);
