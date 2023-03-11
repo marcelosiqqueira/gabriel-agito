@@ -109,20 +109,26 @@ header, .home-images img, .events-images img, #about > div {
     }
 
     #image-carousel img {
-        height: 80%;
-        margin: auto;
+        height: 320px;
+    
         object-fit:contain;
     }
 
     #image-carousel button {
         height: 80px;
-        width: 40px;
+        width: 30px;
         position: absolute;
+
+        background-color: rgba(0, 0, 0, .5);
+        background-position: center;
+
+        color: transparent;
     }
+
 
     .button-carousel-left {
         left: 0px;
-        top: 150px;
+        top: 120px;
 
         border-radius: 0 10px 10px 0;
         background-image: url('../assets/arrow-left.svg');
@@ -130,7 +136,7 @@ header, .home-images img, .events-images img, #about > div {
     
     .button-carousel-right {
         right: 0px;
-        top: 150px;
+        top: 120px;
 
         border-radius: 10px 0 0 10px;
 
@@ -138,7 +144,13 @@ header, .home-images img, .events-images img, #about > div {
         background-repeat: no-repeat;
     }
 
+    .button-carousel-left span, .button-carousel-right span {
+        display: none;
+    }
 
+    .button-carousel-left:active, .button-carousel-right:active {
+        background-color: rgba(192, 192, 192, 0.5);
+    }
 
     .header-buttons button {
         width: 50%;
@@ -166,6 +178,7 @@ header, .home-images img, .events-images img, #about > div {
         align-items: center;
         gap: 40px;
     }
+    
     #about div img {
         width: 200px;
     }
@@ -181,7 +194,6 @@ header, .home-images img, .events-images img, #about > div {
 
     .about-description p {
         font-weight: 400;
-
     }
 
     #about ul li img {
