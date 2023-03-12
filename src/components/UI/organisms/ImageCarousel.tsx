@@ -15,8 +15,8 @@ export default function ImageCarousel() {
     return (
         <div id="image-carousel">
             <img src={testImages[carouselIndex]} alt="" />
-            <button value="left" className="button-carousel-left" onClick={e => handleButtonClick(e)}>Previous image</button>
-            <button value="right" className="button-carousel-right" onClick={e => handleButtonClick(e)}>Next image</button>
+            <button value="left" className="button-carousel-left" onClick={e => handleButtonClick(e)}><span>Previous image</span></button>
+            <button value="right" className="button-carousel-right" onClick={e => handleButtonClick(e)}><span>Next image</span></button>
         </div>
     )
 }

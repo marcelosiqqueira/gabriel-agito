@@ -1,4 +1,5 @@
 import '../../../../styles/home.css'
+import './Events.css'
 import { Outlet, Link } from "react-router-dom";
 import ImageCarousel from "../ImageCarousel";
 
@@ -11,7 +12,7 @@ function Events() {
           <ImageCarousel></ImageCarousel>
         </div>
         <div className="events-description">
-
+            <p>Mauris bibendum ipsum lorem, in vehicula leo interdum</p>
         </div>
       </div>
       {/* COMPONENT */}
@@ -25,7 +26,7 @@ function Events() {
           </Link>
 
           <Link to={'/schedule'}>
-            <button className='schedule-button' >
+            <button className='schedule-button unfocused' >
               Agenda
             </button>
           </Link>

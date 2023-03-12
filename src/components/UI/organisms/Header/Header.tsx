@@ -1,4 +1,7 @@
-function Header() {
+import './Header.css'
+
+
+export default function Header(): JSX.Element {
 
     function handleScrollElement(e: any) {
         switch (e.target.value) {
@@ -40,5 +43,3 @@ function Header() {
         </header>
     )
 }
-
-export default Header;

@@ -1,4 +1,6 @@
-function HomeMain(){
+import './HomeMain.css'
+
+export default function HomeMain(){
     return(
         <section id='home'>
           <div className='home-description'>
@@ -17,5 +19,3 @@ function HomeMain(){
         </section>
     )
 }
-
-export default HomeMain;

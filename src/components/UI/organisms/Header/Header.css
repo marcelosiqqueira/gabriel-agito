@@ -1,0 +1,59 @@
+/* general css */
+header {
+    background: var(--transparency-purple);
+    width: 100vw;
+}
+
+header, .home-images img, .events-images img, #about > div {
+    box-shadow: var(--shadow);
+}
+
+/* CSS Mobile (portrait) */
+@media (max-width: 480px) {
+    header {
+        position: fixed;
+        background-color: var(--secondary-purple);
+    }
+
+    nav {
+        visibility: hidden;
+    }
+}
+
+/* CSS Desktop*/
+@media (min-width: 1280px) {
+
+    header {
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    nav {
+        width: 100%;
+        padding-bottom: 20px;
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-end;
+    }
+    
+    nav button {
+        font-size: 20px;
+        font-weight: bold;
+        color: var(--elements-white);
+        background-color: var(--secondary-purple);
+        border-radius: 20px;
+        
+        height: 2em;
+        width: 10em;
+    
+        cursor: pointer;
+        transition: .3s;
+    }
+    
+    nav button:hover {
+        transform: scale(1.1);
+        background-color: #9641ff;
+    }
+}

@@ -1,0 +1,168 @@
+#image-carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 8px;
+}
+
+#image-carousel img {
+    object-fit:contain;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+#image-carousel button {
+    height: 80px;
+    width: 35px;
+    position: absolute;
+    cursor: pointer;
+
+    background-color: rgba(88, 88, 88, 0.7);
+    background-position: center;
+}
+
+#image-carousel button:hover {
+    background-color: rgba(150, 150, 150, 0.7);
+}
+
+#image-carousel button span {
+    display: none;
+}
+
+.button-carousel-left {
+    left: 0px;
+
+
+    border-radius: 0 10px 10px 0;
+    background-image: url('../../../../assets/arrow-left.svg');
+}
+
+.button-carousel-right {
+    right: 0px;
+
+    border-radius: 10px 0 0 10px;
+    background-image: url('../../../../assets/arrow-right.svg');
+}
+
+.schedule-button, .coverages-button {
+    background-color: var(--elements-gray);
+    cursor: pointer;
+    width: 50%;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.coverages-button {
+    border-radius: 8px 0 0 0;
+}
+
+.coverages-button.unfocused {
+    border-radius: 8px 0 8px 0;
+}
+
+.schedule-button.unfocused {
+    border-radius: 0 8px 0 8px;
+}
+
+
+.events-container2 {
+    color: var(--elements-purple);
+    background-color: var(--elements-gray);
+    box-shadow: var(--shadow);
+    border-radius: 8px;
+}
+
+/* CSS Mobile (portrait) */
+@media (max-width: 480px) {
+   #events {
+    margin: 30px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#image-carousel {
+    width: 100vw;
+    height: 350px;
+}
+
+#image-carousel img {
+    height: 320px;
+}
+
+#image-carousel button {
+    height: 80px;
+    width: 35px;
+}
+
+.button-carousel-left {
+    left: 0px;
+    top: 135px;
+}
+
+.button-carousel-right {
+    right: 0px;
+    top: 135px;
+}
+
+.events-description {
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.header-buttons button {
+    height: 50px;
+    padding-bottom: 40px;
+    margin-bottom: 10px;
+}
+
+.events-container2 {
+    height: 750px;
+    width: 100vw;
+}
+}
+/* CSS Mobile (Landscape)*/
+@media (min-width: 481px) and (max-width: 767px) {
+
+}
+
+/* CSS Tablets (portrait) */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+}
+
+/* CSS Laptop */
+@media (min-width: 1025px) and (max-width: 1279px) {
+
+}
+
+/* CSS Desktop*/
+@media (min-width: 1280px) {
+
+    #events {
+        width: 100vw;
+        display: flex;
+        justify-content: space-evenly;
+        padding: 50px;
+    }
+
+    .events-container {
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .events-images img {
+        min-width: 210px;
+        max-height: 420px;
+    }
+
+    .events-list {
+        padding: 20px;
+    }
+}
