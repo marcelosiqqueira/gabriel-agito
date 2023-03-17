@@ -2,8 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Home from './routes/Home'
 import '/src/styles/global.css'
-import Coverages from './routes/Coverages'
-import Schedule from './routes/Schedule'
+import Coverages from './routes/EventsList'
 
 import {
   createBrowserRouter,
@@ -20,10 +19,6 @@ const router = createBrowserRouter([
         index: true,
         element: <Coverages />
       },
-      {
-        path: "schedule",
-        element: <Schedule />
-      }
     ]
   },
 ]);
