@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
 import ImageModal from "./ImageModal/ImageModal"
 
-export default function ImageCarousel() {
+export default function ImageCarousel(props: any) {
     const testImages = ['https://source.unsplash.com/random?sig=1', 'https://source.unsplash.com/random?sig=2', 'https://source.unsplash.com/random?sig=3', 'https://source.unsplash.com/random?sig=4', 'https://source.unsplash.com/random?sig=5', 'https://source.unsplash.com/random?sig=6']
     const [carouselIndex, setCarouselIndex] = useState(0)
     const [showModal, setShowModal] = useState(false);
@@ -17,7 +17,6 @@ export default function ImageCarousel() {
 
     function handleCloseModal() {
         showModal ? setShowModal(false) : setShowModal(true)
-        console.log('oi')
     }
 
     return (
