@@ -9,7 +9,7 @@
 }
 
 /* CSS Mobile (portrait) */
-@media (max-width: 480px) {
+@media only screen and (max-width: 480px) {
     #home {
         margin: 30px 0;
         display: flex;
@@ -31,7 +31,7 @@
 }
 
 /* CSS Mobile (Landscape)*/
-@media (min-width: 481px) and (max-width: 767px) {
+@media only screen and (min-width: 481px) and (max-width: 767px) {
     .home-images img{
         width: 100vw;
     }
@@ -39,13 +39,13 @@
 
 
 /* CSS Laptop */
-@media (min-width: 1025px) and (max-width: 1279px) {
+@media only screen and (min-width: 1025px) and (max-width: 1279px) {
 
 }
   
 
 /* CSS Desktop*/
-@media (min-width: 1280px) {
+@media only screen and (min-width: 1280px) {
     #home {
         display: flex;
         justify-content: space-around;
@@ -64,5 +64,9 @@
     .home-images img{
         width: 600px;
     }
+
+  }
+
+  @media only screen and (min-width: 1440px) {
 
   }

@@ -9,7 +9,7 @@ header, .home-images img, .events-images img, #about > div {
 }
 
 /* CSS Mobile (portrait) */
-@media (max-width: 480px) {
+@media only screen and (max-width: 480px) {
     header {
         position: fixed;
         background-color: var(--secondary-purple);
@@ -21,8 +21,8 @@ header, .home-images img, .events-images img, #about > div {
 }
 
 /* CSS Desktop*/
-@media (min-width: 1280px) {
 
+@media only screen and (min-width: 1280px) {
     header {
         height: 100px;
         display: flex;
@@ -56,4 +56,8 @@ header, .home-images img, .events-images img, #about > div {
         transform: scale(1.1);
         background-color: #9641ff;
     }
+}
+
+@media only screen and (min-width: 1440px) {
+
 }

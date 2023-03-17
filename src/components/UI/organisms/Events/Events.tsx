@@ -1,4 +1,3 @@
-import '../../../../styles/home.css'
 import './Events.css'
 import { Outlet, Link } from "react-router-dom";
 import ImageCarousel from "../ImageCarousel";

@@ -1,4 +1,3 @@
-import '../../styles/home.css'
 import Header from '../../components/UI/organisms/Header/Header'
 import HomeMain from '../../components/UI/organisms/HomeMain/HomeMain'
 import Events from '../../components/UI/organisms/Events/Events'

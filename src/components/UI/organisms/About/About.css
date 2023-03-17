@@ -31,7 +31,7 @@
 }
 
 /* CSS Mobile (portrait) */
-@media (max-width: 480px) {
+@media only screen and (max-width: 480px) {
     #about {
         height: 700px;
         margin: 100px 20px;
@@ -66,21 +66,21 @@
 }
 
 /* CSS Mobile (Landscape)*/
-@media (min-width: 481px) and (max-width: 767px) {
+@media only screen and (min-width: 481px) and (max-width: 767px) {
     #about div img {
         width: 300px;
     }
 }
 
 /* CSS Tablets (portrait) */
-@media (min-width: 768px) and (max-width: 1024px) {
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
     #about div img {
         width: 300px;
     }
 }
 
 /* CSS Desktop*/
-@media (min-width: 1280px) {
+@media only screen and (min-width: 1280px) {
     #about > div {
         padding: 50px;
         border-radius: 8px;
@@ -92,4 +92,8 @@
         width: 300px;
         border-radius: 50%;
     }
+}
+
+@media only screen and (min-width: 1440px) {
+
 }
