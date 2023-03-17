@@ -8,10 +8,10 @@ export default function ImageCarousel() {
     const [showModal, setShowModal] = useState(false);
 
     function handleButtonClick(e: any) {
-        if (e.target.value === 'left')
+        if (e.target.value === 'left' && carouselIndex != 0)
             setCarouselIndex(carouselIndex - 1)
 
-        if (e.target.value === 'right')
+        if (e.target.value === 'right' && carouselIndex != testImages.length - 1)
             setCarouselIndex(carouselIndex + 1)
     }
 
