@@ -171,36 +171,40 @@
 
 @media only screen and (min-width: 1440px) {
     #events {
-        justify-content: center;
-        gap: 10%;
+        justify-content: space-evenly;
+        padding: 50px 90px;
     }
 
     #image-carousel {
-        width: 1024px;
-        height: 576px;
+        width: 1080px;
+        height: 720px;
     }
-
+                                                                                    
     #image-carousel button {
-        height: 120px;
+        height: 100px;
         width: 40px;
         background-repeat: no-repeat;
     }
 
+    .events-container {
+        width: 1300px;
+  
+    }
+
     .events-images {
-        aspect-ratio: 16 / 9;
+
         width: 60%;
         text-align: center;
     }
 
     .events-images img {
-       aspect-ratio: 16 / 9;
+       aspect-ratio: 3 / 2;
        max-height: 100%;
        max-width: 100%;
     }
     .events-description {
         font-size: 20px;
         margin-top: 30px;
-
     }
 
     .events-container2 {
