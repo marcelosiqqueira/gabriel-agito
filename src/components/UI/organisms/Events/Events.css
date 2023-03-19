@@ -159,7 +159,7 @@
     }
 
     .events-container {
-        width: 40%;
+        width: 720px;
         display: flex;
         flex-direction: column;
         gap: 20px;
@@ -197,12 +197,11 @@
     }
 
     .events-container {
-        width: 50%;
+        width: 720px;
     }
 
     .events-images {
-
-        width: 50%;
+        width: 100%;
         text-align: center;
     }
 
