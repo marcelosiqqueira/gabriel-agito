@@ -1,16 +1,20 @@
 import ListItem from "../../molecules/ListItem/ListItem";
+import { basePhotoUrl } from "../../../../const/const";
 import "./CustomList.css"
 
 export default function CustomList(props: any) {
     return (
         <ul id="eventsList">
-            <ListItem url={'a'} handleSelectEvent={props.handleSelectEvent}></ListItem>
-            <ListItem url={'b'} handleSelectEvent={props.handleSelectEvent}></ListItem>
-            <ListItem url={'c'} handleSelectEvent={props.handleSelectEvent}></ListItem>
-            <ListItem url={'d'} handleSelectEvent={props.handleSelectEvent}></ListItem>
-            <ListItem url={'e'} handleSelectEvent={props.handleSelectEvent}></ListItem>
-            <ListItem url={'f'} handleSelectEvent={props.handleSelectEvent}></ListItem>
-            <ListItem url={'g'} handleSelectEvent={props.handleSelectEvent}></ListItem>
+            {setListItem(props)}
         </ul>
     )
+
+    function setListItem(props: any) {
+        const ListItemArray = []
+        for (let i = 0; i < props.events.length; i++) {
+            ListItemArray.push(<ListItem key={props.events[i].id} url={props.events[i].id} handleSelectEvent={props.handleSelectEvent}></ListItem>)
+        }
+        // console.log(ListItemArray)
+        return ListItemArray
+    }
 }

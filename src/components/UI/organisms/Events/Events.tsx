@@ -1,12 +1,37 @@
 import '../../../../styles/home.css'
 import './Events.css'
+import { basePhotoUrl } from '../../../../const/const.js'
+import { EventType } from '../../../../Interfaces/EventType';
 import EventsList from '../../../../routes/EventsList';
 import { useState, useEffect } from 'react';
 import ImageCarousel from "../ImageCarousel";
 
 function Events() {
   const [selectedEventUrl, setSelectedEventUrl] = useState('')
+  const [events, setEvents] = useState<EventType[]>([])
   const [selectedButton, setSelectedButton] = useState('coverages')
+
+
+
+  useEffect(() => {
+    getEvents()
+  }, [])
+
+  async function fetchData(): Promise<any> {
+    const res = await fetch('https://gabriel-agito-back.onrender.com/events')
+    const data = await res.json()
+    return data
+  }
+
+  async function getEvents() {
+    const data = await fetchData()
+    const events: EventType[] = []
+    data.forEach((element: EventType) => {
+      events.push(element)
+    });
+    setSelectedEventUrl(events[0].id ? events[0].id : 'error')
+    setEvents(events)
+  }
 
   function handleButton(event: any) {
     if (event.target.value === 'coverages') {
@@ -47,7 +72,7 @@ function Events() {
         </div>
 
         <div className="events-list">
-          <EventsList listType={selectedButton} handleSelectEvent={handleSelectEvent}></EventsList>
+          <EventsList listType={selectedButton} handleSelectEvent={handleSelectEvent} events={events}></EventsList>
         </div>
         <div className="events-buttons">
           {/* COMPONENT */}
