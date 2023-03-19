@@ -1,5 +1,4 @@
 import ListItem from "../../molecules/ListItem/ListItem";
-import { basePhotoUrl } from "../../../../const/const";
 import "./CustomList.css"
 
 export default function CustomList(props: any) {
@@ -12,9 +11,8 @@ export default function CustomList(props: any) {
     function setListItem(props: any) {
         const ListItemArray = []
         for (let i = 0; i < props.events.length; i++) {
-            ListItemArray.push(<ListItem key={props.events[i].id} url={props.events[i].id} handleSelectEvent={props.handleSelectEvent}></ListItem>)
+            ListItemArray.push(<ListItem key={props.events[i]?.id} event={props.events[i]} url={props.events[i]?.id} handleSelectEvent={props.handleSelectEvent}></ListItem>)
         }
-        // console.log(ListItemArray)
         return ListItemArray
     }
 }
