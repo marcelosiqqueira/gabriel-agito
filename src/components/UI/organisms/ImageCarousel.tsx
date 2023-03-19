@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
 import ImageModal from "./ImageModal/ImageModal"
-import { basePhotoUrl } from "../../../const/const"
+import { basePhotoUrl, apiUrl } from "../../../const/const"
 
 export default function ImageCarousel(props: any) {
     const [carouselIndex, setCarouselIndex] = useState(0)
@@ -38,7 +38,7 @@ export default function ImageCarousel(props: any) {
     }
 
     async function fetchData(id: string): Promise<any> {
-        const res = await fetch('https://gabriel-agito-back.onrender.com/events/' + id)
+        const res = await fetch(apiUrl + id)
         const data = await res.json()
         return data
     }

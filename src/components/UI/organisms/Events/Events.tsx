@@ -1,5 +1,5 @@
 import './Events.css'
-import { basePhotoUrl } from '../../../../const/const.js'
+import { basePhotoUrl, apiUrl } from '../../../../const/const.js'
 import { EventType } from '../../../../Interfaces/EventType';
 import EventsList from '../../../../routes/EventsList';
 import { useState, useEffect } from 'react';
@@ -17,7 +17,7 @@ function Events() {
   }, [])
 
   async function fetchData(): Promise<any> {
-    const res = await fetch('https://gabriel-agito-back.onrender.com/events')
+    const res = await fetch(apiUrl)
     const data = await res.json()
     return data
   }
