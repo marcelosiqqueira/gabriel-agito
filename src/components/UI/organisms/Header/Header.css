@@ -4,14 +4,11 @@ header {
     width: 100vw;
 }
 
-header, .home-images img, .events-images img, #about > div {
-    box-shadow: var(--shadow);
-}
-
 /* CSS Mobile (portrait) */
 @media only screen and (max-width: 480px) {
     header {
         position: fixed;
+        z-index: 1;
         background-color: var(--secondary-purple);
     }
 
@@ -56,8 +53,4 @@ header, .home-images img, .events-images img, #about > div {
         transform: scale(1.1);
         background-color: #9641ff;
     }
-}
-
-@media only screen and (min-width: 1440px) {
-
 }

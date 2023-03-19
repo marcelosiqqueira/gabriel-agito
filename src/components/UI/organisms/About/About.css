@@ -1,4 +1,8 @@
 /* general CSS */
+#about {
+    width: 100vw;
+}
+
 #about div:first-child {
     background-color: rgba(44, 0, 99, 0.6);
     display: flex;
@@ -6,6 +10,7 @@
 }
 
 #about div img {
+    width: 300px;
     border-radius: 50%;
 }
 
@@ -34,7 +39,8 @@
 @media only screen and (max-width: 480px) {
     #about {
         height: 700px;
-        margin: 100px 20px;
+        width: 80%;
+        margin: 100px auto;
     }
 
     #about div:first-child {
@@ -67,16 +73,12 @@
 
 /* CSS Mobile (Landscape)*/
 @media only screen and (min-width: 481px) and (max-width: 767px) {
-    #about div img {
-        width: 300px;
-    }
+
 }
 
 /* CSS Tablets (portrait) */
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
-    #about div img {
-        width: 300px;
-    }
+
 }
 
 /* CSS Desktop*/
@@ -84,16 +86,11 @@
     #about > div {
         padding: 50px;
         border-radius: 8px;
-        width: 80%;
+        width: 1080px;
         margin: 0 auto;
-    }
-
-    #about div img {
-        width: 300px;
-        border-radius: 50%;
     }
 }
 
-@media only screen and (min-width: 1440px) {
+@media only screen and (min-width: 1600px) {
 
 }

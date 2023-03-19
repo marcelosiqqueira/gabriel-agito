@@ -46,7 +46,7 @@ export default function ImageCarousel(props: any) {
     return (
         <div id="image-carousel">
             {showModal && createPortal(
-                <ImageModal onClose={handleCloseModal} imageUrl={imageArray[carouselIndex]?.src} />,
+                <ImageModal events={imageArray} onClose={handleCloseModal} imageUrl={imageArray[carouselIndex]?.src} />,
                 document.body
             )}
             <img src={imageArray[carouselIndex]?.src} alt="img" onClick={handleCloseModal} />

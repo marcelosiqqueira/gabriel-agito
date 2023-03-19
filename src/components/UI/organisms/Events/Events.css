@@ -11,10 +11,10 @@
 
 #image-carousel img {
     object-fit:contain;
-
+    cursor: pointer;
 }
 
-#image-carousel button {
+.button-carousel-left, .button-carousel-right {
     height: 80px;
     width: 35px;
     position: absolute;
@@ -24,17 +24,16 @@
     background-position: center;
 }
 
-#image-carousel button:hover {
+.button-carousel-left:hover, .button-carousel-right:hover {
     background-color: rgba(150, 150, 150, 0.7);
 }
 
-#image-carousel button span {
+.button-carousel-left span, .button-carousel-right span {
     display: none;
 }
 
 .button-carousel-left {
     left: 0px;
-
 
     border-radius: 0 10px 10px 0;
     background-image: url('../../../../assets/arrow-left.svg');
@@ -59,6 +58,10 @@
     border-radius: 8px 0 0 0;
 }
 
+.schedule-button {
+    border-radius: 0 8px 0 0;
+}
+
 .coverages-button.unfocused {
     border-radius: 8px 0 8px 0;
 }
@@ -66,7 +69,6 @@
 .schedule-button.unfocused {
     border-radius: 0 8px 0 8px;
 }
-
 
 .events-container2 {
     color: var(--elements-purple);
@@ -91,6 +93,7 @@
 
 #image-carousel img {
     height: 320px;
+    max-width: 100%;
 }
 
 #image-carousel button {
@@ -121,8 +124,13 @@
 }
 
 .events-container2 {
-    height: 750px;
+    height: 480px;
     width: 100vw;
+    overflow: scroll;
+}
+
+.footer-button {
+    background-color: red;
 }
 }
 /* CSS Mobile (Landscape)*/
@@ -147,8 +155,7 @@
     #events {
         width: 100vw;
         display: flex;
-        justify-content: space-evenly;
-        padding: 50px;
+        justify-content: space-between;
     }
 
     .events-container {
@@ -157,6 +164,10 @@
         flex-direction: column;
         gap: 20px;
         text-align: center;
+    }
+
+    .events-container2 {
+        min-width: 400px
     }
 
     .events-images img {
@@ -169,15 +180,14 @@
     }
 }
 
-@media only screen and (min-width: 1440px) {
+@media only screen and (min-width: 1600px) {
     #events {
-        justify-content: space-evenly;
-        padding: 50px 90px;
+        padding: 50px 0;
     }
 
     #image-carousel {
-        width: 1080px;
-        height: 720px;
+        width: 720px;
+        height: 480px;
     }
                                                                                     
     #image-carousel button {
@@ -187,13 +197,12 @@
     }
 
     .events-container {
-        width: 1300px;
-  
+        width: 50%;
     }
 
     .events-images {
 
-        width: 60%;
+        width: 50%;
         text-align: center;
     }
 
@@ -208,6 +217,7 @@
     }
 
     .events-container2 {
-        width: 25%;
+        width: 500px;
+        height: 1000px;
     }
 }
