@@ -1,11 +1,16 @@
 import './ListItem.css'
 
-export default function ListItem() {
+export default function ListItem(props: any) {
     const star = 'src/assets/star.svg'
     const clock = 'src/assets/clock.svg'
     const location = 'src/assets/location.svg'
+
+    function handleMouseClick() {
+        props.handleSelectEvent(props.url)
+    }
+
     return (
-        <li className="list-item">
+        <li className="list-item" onClick={handleMouseClick}>
             <div>
                 <img src={star} alt="star icon" />
                 <span>Orci varius natoque penatibus et magnis</span>
