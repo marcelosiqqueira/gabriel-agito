@@ -5,16 +5,17 @@ import EventsList from '../../../../routes/EventsList';
 import { useState, useEffect } from 'react';
 import ImageCarousel from "../ImageCarousel";
 
-function Events() {
+function Events({ selectedButton, setSelectedButton }: any) {
   const [selectedEventUrl, setSelectedEventUrl] = useState('')
   const [events, setEvents] = useState<EventType[]>([])
-  const [selectedButton, setSelectedButton] = useState('coverages')
-
-
 
   useEffect(() => {
     getEvents()
   }, [])
+
+  useEffect(() => {
+    applyButtonEffect()
+  }, [selectedButton])
 
   async function fetchData(): Promise<any> {
     const res = await fetch(apiUrl)
@@ -32,16 +33,14 @@ function Events() {
     setEvents(events)
   }
 
-  function handleButton(event: any) {
-    if (event.target.value === 'coverages') {
+  function applyButtonEffect() {
+    if (selectedButton === 'coverages') {
       document.getElementById('schedule')?.classList.add('unfocused')
       document.getElementById('coverages')?.classList.remove('unfocused')
-      setSelectedButton('coverages')
     }
-    if (event.target.value === 'schedule') {
+    if (selectedButton === 'schedule') {
       document.getElementById('coverages')?.classList.add('unfocused')
       document.getElementById('schedule')?.classList.remove('unfocused')
-      setSelectedButton('schedule')
     }
   }
 
@@ -62,10 +61,10 @@ function Events() {
       {/* COMPONENT */}
       <div className='events-container2'>
         <div className='header-buttons'>
-          <button value='coverages' id='coverages' className='coverages-button' onClick={handleButton}>
+          <button value='coverages' id='coverages' className='coverages-button' onClick={() => setSelectedButton('coverages')}>
             Coberturas
           </button>
-          <button value='schedule' id='schedule' className='schedule-button unfocused' onClick={handleButton}>
+          <button value='schedule' id='schedule' className='schedule-button unfocused' onClick={() => setSelectedButton('schedule')}>
             Agenda
           </button>
         </div>

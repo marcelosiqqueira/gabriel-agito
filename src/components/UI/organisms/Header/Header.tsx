@@ -1,7 +1,7 @@
 import './Header.css'
 
 
-export default function Header(): JSX.Element {
+export default function Header({ handleHeaderClick }: any): JSX.Element {
 
     function handleScrollElement(e: any) {
         switch (e.target.value) {
@@ -9,9 +9,11 @@ export default function Header(): JSX.Element {
                 document.getElementById('home')?.scrollIntoView(true)
                 break
             case 'eventos':
+                handleHeaderClick('coverages')
                 document.getElementById('events')?.scrollIntoView(true)
                 break
             case 'calendario':
+                handleHeaderClick('schedule')
                 document.getElementById('events')?.scrollIntoView(true)
                 break
             case 'sobre':

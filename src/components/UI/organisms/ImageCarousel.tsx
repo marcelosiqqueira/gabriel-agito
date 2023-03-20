@@ -10,7 +10,6 @@ export default function ImageCarousel(props: any) {
 
 
     useEffect(() => {
-        setCarouselIndex(0)
         props.selectedEventUrl ? loadEventImages(props.selectedEventUrl) : 'erro'
     }, [props.selectedEventUrl])
 
@@ -35,6 +34,7 @@ export default function ImageCarousel(props: any) {
             array.unshift(image)
         });
         setImageArray(array)
+        setCarouselIndex(0)
     }
 
     async function fetchData(id: string): Promise<any> {
@@ -46,7 +46,7 @@ export default function ImageCarousel(props: any) {
     return (
         <div id="image-carousel">
             {showModal && createPortal(
-                <ImageModal events={imageArray} onClose={handleCloseModal} imageUrl={imageArray[carouselIndex]?.src} />,
+                <ImageModal imageArray={imageArray} onClose={handleCloseModal} imageUrl={imageArray[carouselIndex]?.src} />,
                 document.body
             )}
             <img src={imageArray[carouselIndex]?.src} alt="img" onClick={handleCloseModal} />

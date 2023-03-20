@@ -4,13 +4,13 @@ import HomeMain from '../../components/UI/organisms/HomeMain/HomeMain'
 import Events from '../../components/UI/organisms/Events/Events'
 import About from '../../components/UI/organisms/About/About'
 
-function HomeTemplate() {
+function HomeTemplate(props: any) {
   return (
     <div className='container'>
-      <Header />
+      <Header handleHeaderClick={props.handleHeaderClick} />
       <main>
         <HomeMain />
-        <Events />
+        <Events selectedButton={props.selectedButtonState.selectedButton} setSelectedButton={props.selectedButtonState.setSelectedButton} />
         <About />
       </main>
     </div>
