@@ -1,6 +1,7 @@
 export type DetailedEvent = {
+  id: string;
   name: string;
   date: string;
-  time: number;
+  time: string;
   local: string;
 };
