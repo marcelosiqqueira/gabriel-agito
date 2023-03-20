@@ -9,22 +9,11 @@ export default function ListItem(props: any) {
     const [event, setEvent] = useState<DetailedEvent>()
 
     useEffect(() => {
-        createDetailedEvent()
+        setEvent(props.event)
     }, [])
 
     function handleMouseClick() {
         props.handleSelectEvent(props.url)
-    }
-
-    function createDetailedEvent() {
-        const stringArray = props.event.name.split('--')
-        const detailedEvent: DetailedEvent = {
-            date: stringArray[0],
-            time: stringArray[1],
-            name: stringArray[2],
-            local: stringArray[3]
-        }
-        setEvent(detailedEvent)
     }
 
     return (

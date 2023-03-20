@@ -1,10 +1,12 @@
 import ListItem from "../../molecules/ListItem/ListItem";
+import IndexButtonList from "../../molecules/IndexButtonList/IndexButtonList";
 import "./CustomList.css"
 
 export default function CustomList(props: any) {
     return (
         <ul id="eventsList">
             {setListItem(props)}
+            <IndexButtonList events={props.events}></IndexButtonList>
         </ul>
     )
 
