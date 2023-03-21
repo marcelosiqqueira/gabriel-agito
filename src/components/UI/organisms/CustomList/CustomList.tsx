@@ -6,7 +6,9 @@ export default function CustomList(props: any) {
     return (
         <ul id="eventsList">
             {setListItem(props)}
-            <IndexButtonList events={props.events}></IndexButtonList>
+            <li>
+                <IndexButtonList events={props.events}></IndexButtonList>
+            </li>
         </ul>
     )
 

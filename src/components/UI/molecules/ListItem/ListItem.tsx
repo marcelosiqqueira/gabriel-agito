@@ -13,7 +13,8 @@ export default function ListItem(props: any) {
     }, [])
 
     function handleMouseClick() {
-        props.handleSelectEvent(props.url)
+        if (props.handleSelectEvent != 'error')
+            props.handleSelectEvent(props.url)
     }
 
     return (
