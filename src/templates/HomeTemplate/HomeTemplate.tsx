@@ -9,8 +9,9 @@ function HomeTemplate(props: any) {
     <div className='container'>
       <Header handleHeaderClick={props.handleHeaderClick} />
       <main>
-        <HomeMain />
-        <Events selectedButton={props.selectedButtonState.selectedButton} setSelectedButton={props.selectedButtonState.setSelectedButton} />
+        <HomeMain coverageEvents={props.coverageState.coverageEvents} />
+        <Events selectedButton={props.selectedButtonState.selectedButton} setSelectedButton={props.selectedButtonState.setSelectedButton} coverageEvents={props.coverageState.coverageEvents}
+          scheduleEvents={props.scheduleState.scheduleEvents} selectedEventUrl={props.selectedEventUrlState.selectedEventUrl} setSelectedEventUrl={props.selectedEventUrlState.setSelectedEventUrl} />
         <About />
       </main>
     </div>
