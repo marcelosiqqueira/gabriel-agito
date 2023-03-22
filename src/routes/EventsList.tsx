@@ -13,7 +13,11 @@ function EventsList({ events, handleSelectEvent, listType }: any) {
 
     function getListType() {
         return (
-            <CustomList events={events} handleSelectEvent={listType === 'coverages' ? handleSelectEvent : 'error'}></CustomList>
+            <CustomList 
+                events={events}
+                listType={listType}
+                handleSelectEvent={listType === 'coverages' ? handleSelectEvent : 'error'}
+            />
         )
     }
 }

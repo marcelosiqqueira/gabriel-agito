@@ -16,7 +16,13 @@ function Home() {
     }, [])
 
     return (
-        <HomeTemplate selectedButtonState={{ selectedButton, setSelectedButton }} coverageState={{ coverageEvents, setCoverageEvents }} scheduleState={{ scheduleEvents, setScheduleEvents }} selectedEventUrlState={{ selectedEventUrl, setSelectedEventUrl }} handleHeaderClick={handleHeaderClick} />
+        <HomeTemplate 
+            selectedButtonState={{ selectedButton, setSelectedButton }}
+            coverageState={{ coverageEvents, setCoverageEvents }}
+            scheduleState={{ scheduleEvents, setScheduleEvents }}
+            selectedEventUrlState={{ selectedEventUrl, setSelectedEventUrl }}
+            handleHeaderClick={handleHeaderClick} 
+        />
     )
 
     function handleHeaderClick(text: string) {
@@ -47,7 +53,8 @@ function Home() {
                 date: stringArray[0],
                 time: stringArray[1],
                 name: stringArray[2],
-                local: stringArray[3]
+                local: stringArray[3],
+                pageId: 1,
             }
             eventArray.push(detailedEvent)
         })
@@ -58,20 +65,36 @@ function Home() {
         let date = new Date()
         const coverageArray: DetailedEvent[] = []
         const scheduleArray: DetailedEvent[] = []
+        let countCoverage = 0;
+        let countSchedule = 0;
+
         eventsArray.forEach((event: DetailedEvent) => {
             if (getGreaterDate(date.toLocaleDateString('pt-BR'), event.date) === -1)
+            {
+                if(countCoverage == 7){
+                    event.pageId++;
+                    countCoverage = 0;
+                }
                 coverageArray.push(event)
-            else
+                countCoverage++;
+            }else{
+                if(countSchedule == 7){
+                    event.pageId++;
+                    countSchedule = 0;
+                }
                 scheduleArray.push(event)
+                countSchedule++;
+            }      
         });
+
+        console.log(coverageArray)
         setCoverageEvents(coverageArray)
         setScheduleEvents(scheduleArray)
 
         //-->
-        setSelectedEventUrl(coverageArray[0]?.id ? coverageArray[0]?.id : '')
+        setSelectedEventUrl(coverageArray[0]?.id ?? 'error')
         //-->
     }
-
 
 }
 export default Home;

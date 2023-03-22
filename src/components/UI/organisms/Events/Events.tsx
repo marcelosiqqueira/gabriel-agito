@@ -49,7 +49,11 @@ function Events({ selectedButton, setSelectedButton, coverageEvents, scheduleEve
         </div>
 
         <div className="events-list">
-          <EventsList listType={selectedButton} handleSelectEvent={handleSelectEvent} events={selectedButton === 'coverages' ? coverageEvents : scheduleEvents}></EventsList>
+          <EventsList 
+            listType={selectedButton}
+            handleSelectEvent={handleSelectEvent}
+            events={selectedButton === 'coverages' ? coverageEvents : scheduleEvents}
+          />
         </div>
         <div className="events-buttons">
           {/* COMPONENT */}

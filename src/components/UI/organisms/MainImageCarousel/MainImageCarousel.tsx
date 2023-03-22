@@ -15,23 +15,6 @@ export default function MainImageCarousel({ coverageEvents }: any) {
         loadEventImages()
     }, [])
 
-    return (
-        <div id="image-carousel">
-            {showModal && createPortal(
-                <ImageModal imageArray={imageArray} onClose={handleCloseModal} imageUrl={imageArray[carouselIndex]?.src} />,
-                document.body
-            )}
-            <img src={imageArray[carouselIndex]?.src ? imageArray[carouselIndex]?.src : imageError} alt="img" onClick={handleCloseModal} />
-            <div>
-                <IndexButton value='♦' id={0} handleButtonClick={handleButtonClick}></IndexButton>
-                <IndexButton value='♦' id={1} handleButtonClick={handleButtonClick}></IndexButton>
-                <IndexButton value='♦' id={2} handleButtonClick={handleButtonClick}></IndexButton>
-                <IndexButton value='♦' id={3} handleButtonClick={handleButtonClick}></IndexButton>
-                <IndexButton value='♦' id={4} handleButtonClick={handleButtonClick}></IndexButton>
-            </div>
-        </div>
-    )
-
     async function loadEventImages() {
         const data = await fetchData()
         const array: any = []
@@ -56,4 +39,21 @@ export default function MainImageCarousel({ coverageEvents }: any) {
     function handleCloseModal() {
         showModal ? setShowModal(false) : setShowModal(true)
     }
+
+    return (
+        <div id="image-carousel">
+            {showModal && createPortal(
+                <ImageModal imageArray={imageArray} onClose={handleCloseModal} imageUrl={imageArray[carouselIndex]?.src} />,
+                document.body
+            )}
+            <img src={imageArray[carouselIndex]?.src ? imageArray[carouselIndex]?.src : imageError} alt="img" onClick={handleCloseModal} />
+            <div>
+                <IndexButton value='♦' id={0} handleButtonClick={handleButtonClick}></IndexButton>
+                <IndexButton value='♦' id={1} handleButtonClick={handleButtonClick}></IndexButton>
+                <IndexButton value='♦' id={2} handleButtonClick={handleButtonClick}></IndexButton>
+                <IndexButton value='♦' id={3} handleButtonClick={handleButtonClick}></IndexButton>
+                <IndexButton value='♦' id={4} handleButtonClick={handleButtonClick}></IndexButton>
+            </div>
+        </div>
+    )
 }
