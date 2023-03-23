@@ -1,4 +1,23 @@
-.index-button {
+#home-index-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+
+  position: absolute;
+  top: 90%;
+}
+
+#home-index-buttons button {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: var(--elements-white);
+  cursor: pointer;
+  color: transparent;
+}
+
+.index-button-events {
   width: 50px;
   height: 50px;
   border: 3px solid var(--elements-border);
@@ -18,7 +37,6 @@
 .index-button:active {
   transform: scale(.9);
 }
-
 
 /* CSS Mobile (portrait) */
 @media only screen and (max-width: 480px) {

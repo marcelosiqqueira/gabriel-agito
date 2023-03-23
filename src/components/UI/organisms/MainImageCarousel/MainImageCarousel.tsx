@@ -47,7 +47,7 @@ export default function MainImageCarousel({ coverageEvents }: any) {
                 document.body
             )}
             <img src={imageArray[carouselIndex]?.src ? imageArray[carouselIndex]?.src : imageError} alt="img" onClick={handleCloseModal} />
-            <div>
+            <div id='home-index-buttons'>
                 <IndexButton value='♦' id={0} handleButtonClick={handleButtonClick}></IndexButton>
                 <IndexButton value='♦' id={1} handleButtonClick={handleButtonClick}></IndexButton>
                 <IndexButton value='♦' id={2} handleButtonClick={handleButtonClick}></IndexButton>
