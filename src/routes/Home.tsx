@@ -86,8 +86,6 @@ function Home() {
                 countSchedule++;
             }      
         });
-
-        console.log(coverageArray)
         setCoverageEvents(coverageArray)
         setScheduleEvents(scheduleArray)
 

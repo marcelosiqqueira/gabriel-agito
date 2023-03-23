@@ -10,8 +10,14 @@ function HomeTemplate(props: any) {
       <Header handleHeaderClick={props.handleHeaderClick} />
       <main>
         <HomeMain coverageEvents={props.coverageState.coverageEvents} />
-        <Events selectedButton={props.selectedButtonState.selectedButton} setSelectedButton={props.selectedButtonState.setSelectedButton} coverageEvents={props.coverageState.coverageEvents}
-          scheduleEvents={props.scheduleState.scheduleEvents} selectedEventUrl={props.selectedEventUrlState.selectedEventUrl} setSelectedEventUrl={props.selectedEventUrlState.setSelectedEventUrl} />
+        <Events 
+          selectedButton={props.selectedButtonState.selectedButton}
+          setSelectedButton={props.selectedButtonState.setSelectedButton}
+          coverageEvents={props.coverageState.coverageEvents}
+          scheduleEvents={props.scheduleState.scheduleEvents}
+          selectedEventUrl={props.selectedEventUrlState.selectedEventUrl}
+          setSelectedEventUrl={props.selectedEventUrlState.setSelectedEventUrl} 
+        />
         <About />
       </main>
     </div>

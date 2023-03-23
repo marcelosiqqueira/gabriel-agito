@@ -1,10 +1,10 @@
 import { useState } from "react"
 import './IndexButton.css'
 
-export default function IndexButton({ id, handleButtonClick}: any) {
+export default function IndexButton(props: any) {
     return (
-        <button className="index-button" onClick={() => handleButtonClick(id)}>
-            {id}
+        <button className="index-button" onClick={() => props.handleButtonClick(props.id)}>
+            {props.id}
         </button>
     )
 }

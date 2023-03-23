@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { DetailedEvent } from "../Interfaces/DetailedEvent";
 import CustomList from "../components/UI/organisms/CustomList/CustomList";
-useState
 
 function EventsList({ events, handleSelectEvent, listType }: any) {
 
@@ -12,6 +11,7 @@ function EventsList({ events, handleSelectEvent, listType }: any) {
     )
 
     function getListType() {
+        // console.log('eventsss:',events) ok, events chegando aqui
         return (
             <CustomList 
                 events={events}
