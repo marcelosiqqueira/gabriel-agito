@@ -12,6 +12,10 @@ export default function CustomList(props: any) {
         setListItem(props)
     },[actualPage])
 
+    useEffect(() => {
+        setActualPage(1);
+    },[props.listType])
+
     function setListItem(props: any) {
         const ListItemArray = []
         for (let i = 0; i < props.events.length; i++) {
