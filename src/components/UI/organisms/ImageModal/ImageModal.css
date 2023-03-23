@@ -1,5 +1,6 @@
 #imageModal {
   position: fixed;
+  z-index: 2;
   top: 0;
   bottom: 0;
   left: 0;
@@ -33,5 +34,28 @@
 }
 
 #imageModal .button-carousel-left, #imageModal .button-carousel-right {
-  top: 50%;
+  top: 45%;
+}
+
+/* CSS Mobile (portrait) */
+@media only screen and (max-width: 480px) {
+  #imageModal img {
+    aspect-ratio: 3 / 2;
+    object-fit: contain;
+  }
+
+  #imageModal > button:first-of-type {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* CSS Mobile (Landscape)*/
+@media only screen and (min-width: 481px) and (max-width: 767px) {
+
+  #imageModal > button:first-of-type {
+    width: 30px;
+    height: 30px;
+  }
+  
 }

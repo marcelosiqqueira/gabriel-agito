@@ -27,7 +27,7 @@ export default function Header({ handleHeaderClick }: any): JSX.Element {
             <img src="" alt="logo" />
             <nav>
                 <button value='inicio' onClick={e => handleScrollElement(e)} id='buttonHome'>
-                    Inicio
+                    Início
                 </button>
 
                 <button value='eventos' onClick={e => handleScrollElement(e)} id='buttonEvents'>

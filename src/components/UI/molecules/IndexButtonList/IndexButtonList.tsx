@@ -39,7 +39,7 @@ export default function IndexButtonList(props: any) {
     }
 
     return (
-        <div>
+        <div id="index-button-list">
             {setIndexList()}
         </div>
     )
