@@ -126,28 +126,13 @@
 .events-container2 {
     height: 480px;
     width: 100vw;
-    overflow: scroll;
 }
 
-.footer-button {
-    background-color: red;
-}
 }
 /* CSS Mobile (Landscape)*/
 @media only screen and (min-width: 481px) and (max-width: 767px) {
 
 }
-
-/* CSS Tablets (portrait) */
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-
-}
-
-/* CSS Laptop */
-@media only screen and (min-width: 1025px) and (max-width: 1279px) {
-
-}
-
 /* CSS Desktop*/
 
 @media only screen and (min-width: 1280px) {

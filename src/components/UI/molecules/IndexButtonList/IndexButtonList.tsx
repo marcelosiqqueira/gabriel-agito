@@ -21,7 +21,7 @@ export default function IndexButtonList(props: any) {
     }, [props.events])
 
     return (
-        <div>
+        <div id="index-button-list">
             {range ? setIndexButton() : 'error'}
         </div>
     )

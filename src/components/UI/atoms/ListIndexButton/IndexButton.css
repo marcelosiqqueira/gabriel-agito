@@ -1,9 +1,26 @@
 .index-button {
   width: 50px;
   height: 50px;
+  border: 3px solid var(--elements-border);
+  border-radius: 8px;
+
   cursor: pointer;
+  transition: background-color .3s, transform .1s;
+
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .index-button:hover {
-  background-color: rgba(150, 150, 150, 0.7);
+  background-color: var(--elements-border);
+}
+
+.index-button:active {
+  transform: scale(.9);
+}
+
+
+/* CSS Mobile (portrait) */
+@media only screen and (max-width: 480px) {
+
 }
