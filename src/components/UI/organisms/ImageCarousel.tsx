@@ -4,6 +4,7 @@ import ImageModal from "./ImageModal/ImageModal"
 import { basePhotoUrl, apiUrl } from "../../../const/const"
 
 export default function ImageCarousel(props: any) {
+    const imageError = 'src/assets/imageError.webp'
     const [carouselIndex, setCarouselIndex] = useState(0)
     const [imageArray, setImageArray] = useState<any>([])
     const [showModal, setShowModal] = useState(false);
@@ -49,7 +50,7 @@ export default function ImageCarousel(props: any) {
                 <ImageModal imageArray={imageArray} onClose={handleCloseModal} imageUrl={imageArray[carouselIndex]?.src} />,
                 document.body
             )}
-            <img src={imageArray[carouselIndex]?.src} alt="img" onClick={handleCloseModal} />
+            <img src={imageArray[carouselIndex]?.src ? imageArray[carouselIndex]?.src : imageError} alt="img" onClick={handleCloseModal} />
             <button value="left" className="button-carousel-left" onClick={e => handleButtonClick(e)}><span>Previous image</span></button>
             <button value="right" className="button-carousel-right" onClick={e => handleButtonClick(e)}><span>Next image</span></button>
         </div>
