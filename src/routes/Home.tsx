@@ -10,6 +10,8 @@ function Home() {
     const [selectedEventUrl, setSelectedEventUrl] = useState('')
     const [coverageEvents, setCoverageEvents] = useState<DetailedEvent[]>([])
     const [scheduleEvents, setScheduleEvents] = useState<DetailedEvent[]>([])
+    // const [pageIdCoverage, setPageIdCoverage] = useState(1);
+    // const [pageIdSchedule, setPageIdSchedule] = useState(1);
 
     useEffect(() => {
         getEvents()
@@ -68,25 +70,31 @@ function Home() {
         let countCoverage = 0;
         let countSchedule = 0;
 
+        let pageIdCoverage =  1;
+        let pageIdSchedule =  1;
         eventsArray.forEach((event: DetailedEvent) => {
             if (getGreaterDate(date.toLocaleDateString('pt-BR'), event.date) === -1)
             {
                 if(countCoverage == 7){
-                    event.pageId++;
+                    pageIdCoverage++;    
                     countCoverage = 0;
                 }
+                event.pageId = pageIdCoverage;
                 coverageArray.push(event)
                 countCoverage++;
             }else{
                 if(countSchedule == 7){
-                    event.pageId++;
+                    pageIdSchedule++;
                     countSchedule = 0;
                 }
+                event.pageId = pageIdSchedule;
                 scheduleArray.push(event)
                 countSchedule++;
             }      
         });
+
         setCoverageEvents(coverageArray)
+        console.log(scheduleArray)
         setScheduleEvents(scheduleArray)
 
         //-->

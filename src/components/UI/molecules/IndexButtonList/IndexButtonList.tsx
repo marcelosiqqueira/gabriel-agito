@@ -6,11 +6,10 @@ import { DetailedEvent } from "../../../../Interfaces/DetailedEvent";
 export default function IndexButtonList(props: any) {
     const [totalPages, setTotalPages] = useState(1)
     
-
     useEffect(() => {
         if (props.events)
             setTotalPages(getTotalIndexPages());
-    }, [props.events])
+    }, [props.events, props.listType])
 
     function getTotalIndexPages(){
         const lastEvent: DetailedEvent = props.events[props.events.length - 1];
