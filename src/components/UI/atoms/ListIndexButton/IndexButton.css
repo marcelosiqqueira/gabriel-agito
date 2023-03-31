@@ -12,12 +12,18 @@
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background-color: var(--elements-white);
+  border: none;
+  background-color: var(--unfocused-gray);
   cursor: pointer;
   color: transparent;
 }
 
-.index-button-events {
+
+#home-index-buttons button.unfocused {
+  background-color: var(--elements-white);
+}
+
+.index-button {
   width: 50px;
   height: 50px;
   border: 3px solid var(--elements-border);
