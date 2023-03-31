@@ -10,8 +10,6 @@ function Home() {
     const [selectedEventUrl, setSelectedEventUrl] = useState('')
     const [coverageEvents, setCoverageEvents] = useState<DetailedEvent[]>([])
     const [scheduleEvents, setScheduleEvents] = useState<DetailedEvent[]>([])
-    // const [pageIdCoverage, setPageIdCoverage] = useState(1);
-    // const [pageIdSchedule, setPageIdSchedule] = useState(1);
 
     useEffect(() => {
         getEvents()

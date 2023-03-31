@@ -39,7 +39,13 @@ export default function IndexButtonList(props: any) {
 
     return (
         <div id="index-button-list">
+            <IndexButton></IndexButton>
+            <IndexButton></IndexButton>
+            <IndexButton></IndexButton>
+            <IndexButton></IndexButton>
+            <IndexButton></IndexButton>
             {setIndexList()}
+
         </div>
     )
 }
