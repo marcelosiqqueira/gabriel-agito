@@ -10,7 +10,7 @@ export default function CustomList(props: any) {
 
     useEffect(() => {
         setListItem(props)
-        console.log(props.listType)
+        // console.log('pagina atuallll', actualPage)
     },[actualPage, props.listType])
 
     useEffect(() => {

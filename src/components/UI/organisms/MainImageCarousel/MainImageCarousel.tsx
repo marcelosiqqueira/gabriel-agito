@@ -33,6 +33,7 @@ export default function MainImageCarousel({ coverageEvents }: any) {
     }
 
     function handleButtonClick(id: number) {
+        console.log('botao atual:',id)
         setCarouselIndex(id)
     }
 
