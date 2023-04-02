@@ -6,8 +6,11 @@ import { DetailedEvent } from '../../../../Interfaces/DetailedEvent';
 import EventsList from '../../../../routes/EventsList';
 import { useState, useEffect } from 'react';
 import ImageCarousel from "../ImageCarousel";
+import { useGlobal } from '../../../../context/global';
 
-function Events({ selectedButton, setSelectedButton, coverageEvents, scheduleEvents, selectedEventUrl, setSelectedEventUrl }: any) {
+function Events({ setSelectedButton, coverageEvents, scheduleEvents, selectedEventUrl, setSelectedEventUrl }: any) {
+  const {selectedButton} = useGlobal();
+  
   useEffect(() => {
     applyButtonEffect()
   }, [selectedButton])

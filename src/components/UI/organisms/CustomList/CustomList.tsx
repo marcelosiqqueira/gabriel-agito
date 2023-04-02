@@ -17,6 +17,10 @@ export default function CustomList(props: any) {
         setActualPage(1);
     },[props.listType])
 
+    function handleActualPage(page: number) {
+        setActualPage(page);
+    }
+
     function setListItem(props: any) {
         const ListItemArray = []
         for (let i = 0; i < props.events.length; i++) {
@@ -43,7 +47,7 @@ export default function CustomList(props: any) {
                     events={props.events}
                     listType={props.listType}
                     actualPage={actualPage}
-                    setActualPage={setActualPage}
+                    handleFunction={handleActualPage}
                 />
             </li>
         </ul>

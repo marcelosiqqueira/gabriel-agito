@@ -1,9 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import HomeTemplate from "../templates/HomeTemplate/HomeTemplate";
 import { DetailedEvent } from "../Interfaces/DetailedEvent";
 import { EventType } from "../Interfaces/EventType";
 import { getGreaterDate } from "../func/functions";
 import { basePhotoUrl, apiUrl, apiMainFolderUrl } from "../const/const";
+import { useGlobal } from "../context/global";
+import HomeMain from "../components/UI/organisms/HomeMain/HomeMain";
+import Events from "../components/UI/organisms/Events/Events";
+import MainImageCarousel from "../components/UI/organisms/MainImageCarousel/MainImageCarousel";
+
 
 function Home() {
     const [selectedButton, setSelectedButton] = useState('coverages')
@@ -16,13 +21,20 @@ function Home() {
     }, [])
 
     return (
-        <HomeTemplate 
-            selectedButtonState={{ selectedButton, setSelectedButton }}
-            coverageState={{ coverageEvents, setCoverageEvents }}
-            scheduleState={{ scheduleEvents, setScheduleEvents }}
-            selectedEventUrlState={{ selectedEventUrl, setSelectedEventUrl }}
-            handleHeaderClick={handleHeaderClick} 
-        />
+        <HomeTemplate handleHeaderClick={handleHeaderClick}>
+            <HomeMain >
+                <MainImageCarousel coverageEvents={coverageEvents} />
+            </HomeMain>
+
+            <Events
+                selectedButton={selectedButton}
+                setSelectedButton={setSelectedButton}
+                coverageEvents={coverageEvents}
+                scheduleEvents={scheduleEvents}
+                selectedEventUrl={selectedEventUrl}
+                setSelectedEventUrl={setSelectedEventUrl} 
+            />
+        </HomeTemplate>
     )
 
     function handleHeaderClick(text: string) {

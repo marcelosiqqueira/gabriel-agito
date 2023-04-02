@@ -3,22 +3,21 @@ import Header from '../../components/UI/organisms/Header/Header'
 import HomeMain from '../../components/UI/organisms/HomeMain/HomeMain'
 import Events from '../../components/UI/organisms/Events/Events'
 import About from '../../components/UI/organisms/About/About'
+import { ReactNode } from 'react'
 
-function HomeTemplate(props: any) {
+interface HomeTemplate {
+  children: ReactNode
+  handleHeaderClick: any
+}
+
+function HomeTemplate ({children, handleHeaderClick}: HomeTemplate) {
   return (
     <div className='container'>
-      <Header handleHeaderClick={props.handleHeaderClick} />
+      <Header handleHeaderClick={handleHeaderClick} />
       <main>
-        <HomeMain coverageEvents={props.coverageState.coverageEvents} />
-        <Events 
-          selectedButton={props.selectedButtonState.selectedButton}
-          setSelectedButton={props.selectedButtonState.setSelectedButton}
-          coverageEvents={props.coverageState.coverageEvents}
-          scheduleEvents={props.scheduleState.scheduleEvents}
-          selectedEventUrl={props.selectedEventUrlState.selectedEventUrl}
-          setSelectedEventUrl={props.selectedEventUrlState.setSelectedEventUrl} 
-        />
-        <About />
+       {children}
+       
+       <About />
       </main>
     </div>
   )
