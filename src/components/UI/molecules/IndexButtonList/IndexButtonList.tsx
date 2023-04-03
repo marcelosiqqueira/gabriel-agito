@@ -32,13 +32,44 @@ export default function IndexButtonList(props: any) {
         return indexList;
     }
 
-    function handleButtonClick(pageId: number) {
-        props.setActualPage(pageId);
+    function handleButtonClick(pageId: number, symbol: string) {
+        console.log('botão clicado:', pageId)
+        if (symbol === 'number')
+            props.setActualPage(pageId);
+
+        if (symbol === '>') {
+            if (props.actualPage < getTotalIndexPages()) {
+                props.setActualPage(props.actualPage + 1) //nao sei pq entra aqui independentemente
+            }
+        }
+
+        if (symbol === '|>') {
+            props.setActualPage(getTotalIndexPages())
+        }
+
+        if (symbol === '<') {
+            if (props.actualPage > 1) {
+                props.setActualPage(props.actualPage - 1) //nao sei pq entra aqui independentemente
+            }
+        }
+
+        if (symbol === '<|') {
+            props.setActualPage(1)
+        }
     }
 
     return (
         <div id="index-button-list">
-            {setIndexList()}
+            <IndexButton key={-1} id={'<|'} symbol={'<|'} handleButtonClick={handleButtonClick} />
+            <IndexButton key={-2} id={'<'} symbol={'<'} handleButtonClick={handleButtonClick} />
+            <IndexButton key={1} id={1} symbol={'number'} handleButtonClick={handleButtonClick} />
+            <IndexButton key={2} id={2} symbol={'number'} handleButtonClick={handleButtonClick} />
+            <IndexButton key={3} id={3} symbol={'number'} handleButtonClick={handleButtonClick} />
+            <IndexButton key={-3} id={'>'} symbol={'>'} handleButtonClick={handleButtonClick} />
+            <IndexButton key={-4} id={'|>'} symbol={'|>'} handleButtonClick={handleButtonClick} />
+
+            {/* {setIndexList()} */}
+
         </div>
     )
 }
