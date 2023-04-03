@@ -5,6 +5,11 @@ import { DetailedEvent } from "../../../../Interfaces/DetailedEvent";
 
 export default function IndexButtonList(props: any) {
     const [totalPages, setTotalPages] = useState(1)
+    const [indexList, setIndexList] = useState<JSX.Element[]>([]);
+
+    useEffect(() => {
+        setButtonsIndexList();
+    },[indexList])
     
     useEffect(() => {
         if (props.events)
@@ -18,18 +23,13 @@ export default function IndexButtonList(props: any) {
         return 1;
     }
 
-    function setIndexList(){
+    function setButtonsIndexList(){
         const indexList = [];
-        for(let i = 1; i < totalPages + 1; i++){ 
-            indexList.push(
-                <IndexButton
-                    key={i}
-                    id={i}
-                    handleButtonClick={handleButtonClick}
-                />
-            )
-        }
-        return indexList;
+        indexList.push(<IndexButton key={1} id={1} symbol={'number'} handleButtonClick={handleButtonClick} />)
+        indexList.push(<IndexButton key={1} id={2} symbol={'number'} handleButtonClick={handleButtonClick} />)
+        indexList.push(<IndexButton key={1} id={3} symbol={'number'} handleButtonClick={handleButtonClick} />)
+        setIndexList(indexList)
+        // return indexList;
     }
 
     function handleButtonClick(pageId: number, symbol: string){
@@ -68,14 +68,9 @@ export default function IndexButtonList(props: any) {
         <div id="index-button-list">
             <IndexButton key={-1} id={'<|'} symbol={'<|'} handleButtonClick={handleButtonClick} />
             <IndexButton key={-2} id={'<'} symbol={'<'} handleButtonClick={handleButtonClick} />
-            <IndexButton key={1} id={1} symbol={'number'} handleButtonClick={handleButtonClick} />
-            <IndexButton key={2} id={2} symbol={'number'} handleButtonClick={handleButtonClick} />
-            <IndexButton key={3} id={3} symbol={'number'} handleButtonClick={handleButtonClick} />
+            {indexList}
             <IndexButton key={-3} id={'>'} symbol={'>'} handleButtonClick={handleButtonClick} />
             <IndexButton key={-4} id={'|>'} symbol={'|>'} handleButtonClick={handleButtonClick} />
-
-            {/* {setIndexList()} */}
-
         </div>
     )
 }
