@@ -9,29 +9,23 @@ export default function CustomList(props: any) {
     const [actualPage, setActualPage] = useState(1);
 
     useEffect(() => {
-        setListItem(props)
-        console.log(props.listType)
-    },[actualPage, props.listType])
-
-    useEffect(() => {
         setActualPage(1);
-    },[props.listType])
+    }, [props.listType])
 
     function setListItem(props: any) {
         const ListItemArray = []
         for (let i = 0; i < props.events.length; i++) {
-            if(props.events[i].pageId === actualPage){
+            if (props.events[i].pageId === actualPage) {
                 ListItemArray.push(
-                    <ListItem 
-                        key={props.events[i]?.id} 
-                        event={props.events[i]} 
-                        url={props.events[i]?.id} 
+                    <ListItem
+                        key={props.events[i]?.id}
+                        event={props.events[i]}
+                        url={props.events[i]?.id}
                         handleSelectEvent={props.handleSelectEvent}
-                    ></ListItem> 
+                    ></ListItem>
                 )
             }
         }
-        // console.log('novo events:', props.events) ok, events chegando aqui
         return ListItemArray
     }
 
@@ -39,7 +33,7 @@ export default function CustomList(props: any) {
         <ul id="eventsList">
             {setListItem(props)}
             <li>
-                <IndexButtonList 
+                <IndexButtonList
                     events={props.events}
                     listType={props.listType}
                     actualPage={actualPage}

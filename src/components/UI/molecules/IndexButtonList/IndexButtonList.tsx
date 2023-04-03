@@ -5,22 +5,22 @@ import { DetailedEvent } from "../../../../Interfaces/DetailedEvent";
 
 export default function IndexButtonList(props: any) {
     const [totalPages, setTotalPages] = useState(1)
-    
+
     useEffect(() => {
         if (props.events)
             setTotalPages(getTotalIndexPages());
     }, [props.events, props.listType])
 
-    function getTotalIndexPages(){
+    function getTotalIndexPages() {
         const lastEvent: DetailedEvent = props.events[props.events.length - 1];
-        if(lastEvent)  //NÃO SEI PQ MAS O LASTEVENT TA VINDO UNDEFINED NAS DUAS PRIMEIRAS RENDERIZAÇÕES, MESMO VERIFICANDO LÁ NO USEEFFECT
+        if (lastEvent)  //NÃO SEI PQ MAS O LASTEVENT TA VINDO UNDEFINED NAS DUAS PRIMEIRAS RENDERIZAÇÕES, MESMO VERIFICANDO LÁ NO USEEFFECT
             return lastEvent.pageId;
         return 1;
     }
 
-    function setIndexList(){
+    function setIndexList() {
         const indexList = [];
-        for(let i = 1; i < totalPages + 1; i++){ 
+        for (let i = 1; i < totalPages + 1; i++) {
             indexList.push(
                 <IndexButton
                     key={i}
@@ -32,8 +32,7 @@ export default function IndexButtonList(props: any) {
         return indexList;
     }
 
-    function handleButtonClick(pageId: number){
-        console.log('botão clicado:', pageId)
+    function handleButtonClick(pageId: number) {
         props.setActualPage(pageId);
     }
 

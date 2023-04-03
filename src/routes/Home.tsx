@@ -7,23 +7,21 @@ import { basePhotoUrl, apiUrl, apiMainFolderUrl } from "../const/const";
 
 function Home() {
     const [selectedButton, setSelectedButton] = useState('coverages')
-    const [selectedEventUrl, setSelectedEventUrl] = useState('')
+    const [selectedEventUrl, setSelectedEventUrl] = useState<string | null>(null)
     const [coverageEvents, setCoverageEvents] = useState<DetailedEvent[]>([])
     const [scheduleEvents, setScheduleEvents] = useState<DetailedEvent[]>([])
-    // const [pageIdCoverage, setPageIdCoverage] = useState(1);
-    // const [pageIdSchedule, setPageIdSchedule] = useState(1);
 
     useEffect(() => {
         getEvents()
     }, [])
 
     return (
-        <HomeTemplate 
+        <HomeTemplate
             selectedButtonState={{ selectedButton, setSelectedButton }}
             coverageState={{ coverageEvents, setCoverageEvents }}
             scheduleState={{ scheduleEvents, setScheduleEvents }}
             selectedEventUrlState={{ selectedEventUrl, setSelectedEventUrl }}
-            handleHeaderClick={handleHeaderClick} 
+            handleHeaderClick={handleHeaderClick}
         />
     )
 
@@ -70,27 +68,26 @@ function Home() {
         let countCoverage = 0;
         let countSchedule = 0;
 
-        let pageIdCoverage =  1;
-        let pageIdSchedule =  1;
+        let pageIdCoverage = 1;
+        let pageIdSchedule = 1;
         eventsArray.forEach((event: DetailedEvent) => {
-            if (getGreaterDate(date.toLocaleDateString('pt-BR'), event.date) === -1)
-            {
-                if(countCoverage == 7){
-                    pageIdCoverage++;    
+            if (getGreaterDate(date.toLocaleDateString('pt-BR'), event.date) === -1) {
+                if (countCoverage == 7) {
+                    pageIdCoverage++;
                     countCoverage = 0;
                 }
                 event.pageId = pageIdCoverage;
                 coverageArray.push(event)
                 countCoverage++;
-            }else{
-                if(countSchedule == 7){
+            } else {
+                if (countSchedule == 7) {
                     pageIdSchedule++;
                     countSchedule = 0;
                 }
                 event.pageId = pageIdSchedule;
                 scheduleArray.push(event)
                 countSchedule++;
-            }      
+            }
         });
 
         setCoverageEvents(coverageArray)

@@ -1,16 +1,10 @@
 import './Events.css'
-import { basePhotoUrl, apiUrl } from '../../../../const/const.js'
-import { getGreaterDate } from '../../../../func/functions';
-import { EventType } from '../../../../Interfaces/EventType';
-import { DetailedEvent } from '../../../../Interfaces/DetailedEvent';
 import EventsList from '../../../../routes/EventsList';
-import { useState, useEffect } from 'react';
 import ImageCarousel from "../ImageCarousel";
 
 function Events({ selectedButton, setSelectedButton, coverageEvents, scheduleEvents, selectedEventUrl, setSelectedEventUrl }: any) {
-  useEffect(() => {
-    applyButtonEffect()
-  }, [selectedButton])
+
+  applyButtonEffect()
 
   function applyButtonEffect() {
     if (selectedButton === 'coverages') {
@@ -49,7 +43,7 @@ function Events({ selectedButton, setSelectedButton, coverageEvents, scheduleEve
         </div>
 
         <div className="events-list">
-          <EventsList 
+          <EventsList
             listType={selectedButton}
             handleSelectEvent={handleSelectEvent}
             events={selectedButton === 'coverages' ? coverageEvents : scheduleEvents}

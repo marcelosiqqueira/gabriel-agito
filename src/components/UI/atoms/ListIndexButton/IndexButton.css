@@ -3,7 +3,6 @@
   align-items: center;
   gap: 12px;
 
-
   position: absolute;
   top: 90%;
 }
@@ -24,10 +23,15 @@
   border-radius: 8px;
 
   cursor: pointer;
-  transition: background-color .3s, transform .1s;
+  transition: background-color 0.3s, transform 0.1s;
 
   font-size: 14px;
   font-weight: bold;
+}
+
+.index-button {
+  width: 40px;
+  height: 40px;
 }
 
 .index-button:hover {
@@ -35,10 +39,9 @@
 }
 
 .index-button:active {
-  transform: scale(.9);
+  transform: scale(0.9);
 }
 
 /* CSS Mobile (portrait) */
 @media only screen and (max-width: 480px) {
-
 }

@@ -6,21 +6,13 @@ import { basePhotoUrl, apiUrl } from "../../../const/const"
 export default function ImageCarousel(props: any) {
     const imageError = 'src/assets/imageError.webp'
     const [carouselIndex, setCarouselIndex] = useState(0)
-    const [imageArray, setImageArray] = useState<any>([])
+    const [imageArray, setImageArray] = useState<string[]>([])
     const [showModal, setShowModal] = useState(false);
 
 
     useEffect(() => {
-        props.selectedEventUrl ? loadEventImages(props.selectedEventUrl) : 'erro'
+        props.selectedEventUrl && loadEventImages(props.selectedEventUrl)
     }, [props.selectedEventUrl])
-
-    function handleButtonClick(e: any) {
-        if (e.target.value === 'left' && carouselIndex != 0)
-            setCarouselIndex(carouselIndex - 1)
-
-        if (e.target.value === 'right' && carouselIndex != imageArray.length - 1)
-            setCarouselIndex(carouselIndex + 1)
-    }
 
     function handleCloseModal() {
         showModal ? setShowModal(false) : setShowModal(true)
@@ -28,11 +20,14 @@ export default function ImageCarousel(props: any) {
 
     async function loadEventImages(event: any) {
         const data = await fetchData(props.selectedEventUrl)
-        const array: any = []
+        const array: string[] = []
         data.forEach((element: any) => {
-            const image = new Image()
-            image.src = (basePhotoUrl + element.id)
-            array.unshift(image)
+            // const image = new Image()
+            // image.src = (basePhotoUrl + element.id)
+            // image.onclick = () => setShowModal(!showModal)
+            // array.unshift(image)
+            const url = (basePhotoUrl + element.id)
+            array.unshift(url)
         });
         setImageArray(array)
         setCarouselIndex(0)
@@ -55,9 +50,9 @@ export default function ImageCarousel(props: any) {
                 />,
                 document.body
             )}
-            <img src={imageArray[carouselIndex]?.src ? imageArray[carouselIndex]?.src : imageError} alt="img" onClick={handleCloseModal} />
-            <button value="left" className="button-carousel-left" onClick={e => handleButtonClick(e)}><span>Previous image</span></button>
-            <button value="right" className="button-carousel-right" onClick={e => handleButtonClick(e)}><span>Next image</span></button>
+            <img src={imageArray[carouselIndex] ?? 'error'} alt="img" onClick={() => setShowModal(!showModal)} />
+            <button className="button-carousel-left" onClick={() => carouselIndex > 0 && setCarouselIndex(carouselIndex - 1)}><span>Previous image</span></button>
+            <button className="button-carousel-right" onClick={() => carouselIndex < (imageArray.length - 1) && setCarouselIndex(carouselIndex + 1)}><span>Next image</span></button>
         </div>
     )
 }
