@@ -55,12 +55,11 @@ function Events({ selectedButton, setSelectedButton, coverageEvents, scheduleEve
             events={selectedButton === 'coverages' ? coverageEvents : scheduleEvents}
           />
         </div>
-        <div className="events-buttons">
-          {/* COMPONENT */}
+        {/* <div className="events-buttons">
           <button className='footer-button' title='footer button'>
             <span className='button-description'></span>
           </button>
-        </div>
+        </div> */}
       </div>
     </section>
   )
