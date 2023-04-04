@@ -1,5 +1,36 @@
 #index-button-list {
     display: flex;
     justify-content: space-evenly;
+    position: absolute;
+    top: 780px;
     align-items: center;
+    width: 90%;
+}
+
+#index-button-list button:nth-child(1), #index-button-list button:nth-child(2), #index-button-list button:nth-child(6), #index-button-list button:nth-child(7) {
+    color: transparent;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#index-button-list button:nth-child(1) {
+    background-image: url(../../../../assets/first-page.svg);
+}
+
+#index-button-list button:nth-child(2) {
+    background-image: url(../../../../assets/previous-page.svg);
+}
+
+#index-button-list button:nth-child(6) {
+    background-image: url(../../../../assets/next-page.svg);
+}
+
+#index-button-list button:nth-child(7) {
+    background-image: url(../../../../assets/last-page.svg);
+}
+
+@media only screen and (min-width: 1600px) {
+    #index-button-list {
+        top: 780px;
+    }
 }

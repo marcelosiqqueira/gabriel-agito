@@ -12,14 +12,14 @@
   height: 15px;
   border-radius: 50%;
   border: none;
-  background-color: var(--unfocused-gray);
+  background-color: var(--elements-white);
   cursor: pointer;
   color: transparent;
 }
 
 
 #home-index-buttons button.unfocused {
-  background-color: var(--elements-white);
+  background-color: var(--unfocused-gray);
 }
 
 .index-button {

@@ -130,7 +130,7 @@
 
 }
 /* CSS Mobile (Landscape)*/
-@media only screen and (min-width: 481px) and (max-width: 767px) {
+@media only screen and (max-width: 767px) {
 
 }
 /* CSS Desktop*/
@@ -152,7 +152,8 @@
     }
 
     .events-container2 {
-        min-width: 400px
+        min-width: 400px;
+        height: 900px;
     }
 
     .events-images img {
@@ -202,6 +203,6 @@
 
     .events-container2 {
         width: 500px;
-        height: 1000px;
+        height: 900px;
     }
 }

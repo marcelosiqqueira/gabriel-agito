@@ -42,7 +42,7 @@ export default function MainImageCarousel({ coverageEvents }: any) {
     }
 
     return (
-        <div id="image-carousel">
+        <div id="main-image-carousel">
             {showModal && createPortal(
                 <ImageModal imageArray={imageArray} onClose={handleCloseModal} imageUrl={imageArray[carouselIndex]?.src} />,
                 document.body

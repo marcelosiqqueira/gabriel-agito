@@ -35,16 +35,16 @@ export default function CustomList(props: any) {
     }
 
     return (
-        <ul id="eventsList">
-            {setListItem(props)}
-            <li>
-                <IndexButtonList
-                    events={props.events}
-                    listType={props.listType}
-                    actualPage={actualPage}
-                    setActualPage={setActualPage}
-                />
-            </li>
-        </ul>
+        <div id="list-content">
+            <ul id="eventsList">
+                {setListItem(props)}
+            </ul>
+            <IndexButtonList 
+            events={props.events}
+            listType={props.listType}
+            actualPage={actualPage}
+            setActualPage={setActualPage}>
+            </IndexButtonList>
+        </div>
     )
 }
