@@ -12,6 +12,11 @@ interface IndexButtonListProps {
 
 export default function IndexButtonList({ handleFunction,actualPage,events,listType }: IndexButtonListProps) {
     const [totalPages, setTotalPages] = useState(1)
+    const [indexList, setIndexList] = useState<JSX.Element[]>([]);
+
+    useEffect(() => {
+        setButtonsIndexList();
+    },[indexList])
     
     useEffect(() => {
         if (events)
@@ -23,6 +28,15 @@ export default function IndexButtonList({ handleFunction,actualPage,events,listT
         if(lastEvent)  //NÃO SEI PQ MAS O LASTEVENT TA VINDO UNDEFINED NAS DUAS PRIMEIRAS RENDERIZAÇÕES, MESMO VERIFICANDO LÁ NO USEEFFECT
             return lastEvent.pageId;
         return 1;
+    }
+
+    function setButtonsIndexList(){
+        const indexList = [];
+        indexList.push(<IndexButton key={1} id={1} symbol={'number'} handleButtonClick={handleButtonClick} />)
+        indexList.push(<IndexButton key={1} id={2} symbol={'number'} handleButtonClick={handleButtonClick} />)
+        indexList.push(<IndexButton key={1} id={3} symbol={'number'} handleButtonClick={handleButtonClick} />)
+        setIndexList(indexList)
+        // return indexList;
     }
 
     function handleButtonClick(pageId: number, symbol: string){
@@ -61,9 +75,7 @@ export default function IndexButtonList({ handleFunction,actualPage,events,listT
         <div id="index-button-list">
             <IndexButton key={-1} id={'<|'} symbol={'<|'} handleButtonClick={handleButtonClick} /> 
             <IndexButton key={-2} id={'<'} symbol={'<'} handleButtonClick={handleButtonClick} />
-            <IndexButton key={1} id={1} symbol={'number'} handleButtonClick={handleButtonClick} />
-            <IndexButton key={2} id={2} symbol={'number'} handleButtonClick={handleButtonClick} />
-            <IndexButton key={3} id={3} symbol={'number'} handleButtonClick={handleButtonClick} />
+            {indexList}
             <IndexButton key={-3} id={'>'} symbol={'>'} handleButtonClick={handleButtonClick} />
             <IndexButton key={-4} id={'|>'} symbol={'|>'} handleButtonClick={handleButtonClick} />
         </div>

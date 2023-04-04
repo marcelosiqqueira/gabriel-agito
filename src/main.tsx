@@ -1,15 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
 import Home from './routes/Home'
 import '/src/styles/global.css'
 import Coverages from './routes/EventsList'
-
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from 'react-router-dom';
-import { GlobalProvider } from './context/global'
-
 
 const router = createBrowserRouter([
   {
@@ -23,7 +18,6 @@ const router = createBrowserRouter([
     ]
   },
 ]);
-
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
