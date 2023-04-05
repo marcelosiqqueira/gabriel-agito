@@ -1,9 +1,29 @@
-import './IndexButton.css'
+import { PaginatedProps } from "../../molecules/IndexButtonList/IndexButtonList";
+import "./IndexButton.css";
 
-export default function IndexButton(props: any) {
+export enum ButtonAction {
+    START  = 'start',
+    NEXT = 'next',
+    PREV = 'prev',
+    END = 'end',
+    PAGE = 'page'
+}
+
+interface IndexButtonProps {
+    label: string;
+    action: ButtonAction;
+    index?: number;
+    onButtonClick(props: PaginatedProps): void;
+}
+
+export default function IndexButton({ label, onButtonClick, action, index }: IndexButtonProps) {
+    function handleButtonClick() {
+        onButtonClick({ action, index });
+    }
+
     return (
-        <button className="index-button" onClick={() => props.handleButtonClick(props.id, props.symbol)}>
-            {props.id}
+        <button className="index-button" onClick={handleButtonClick}>
+            {label}
         </button>
-    )
+    );
 }

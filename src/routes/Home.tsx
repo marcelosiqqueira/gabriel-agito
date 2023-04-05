@@ -85,7 +85,7 @@ function Home() {
         eventsArray.forEach((event: DetailedEvent) => {
             if (getGreaterDate(date.toLocaleDateString('pt-BR'), event.date) === -1)
             {
-                if(countCoverage == 7){
+                if(countCoverage == 3){
                     pageIdCoverage++;    
                     countCoverage = 0;
                 }
@@ -93,7 +93,7 @@ function Home() {
                 coverageArray.push(event)
                 countCoverage++;
             }else{
-                if(countSchedule == 7){
+                if(countSchedule == 3){
                     pageIdSchedule++;
                     countSchedule = 0;
                 }
