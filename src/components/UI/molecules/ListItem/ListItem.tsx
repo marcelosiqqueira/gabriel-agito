@@ -1,20 +1,20 @@
 import './ListItem.css'
 import { DetailedEvent } from '../../../../Interfaces/DetailedEvent'
-import { useState, useEffect } from 'react'
 
-export default function ListItem(props: any) {
-    const star = 'src/assets/star.svg'
-    const clock = 'src/assets/clock.svg'
-    const location = 'src/assets/location.svg'
-    const [event, setEvent] = useState<DetailedEvent>()
+interface ListItem {
+    event: DetailedEvent
+    url: string
+    handleSelectEvent(url: string): void
+}
 
-    useEffect(() => {
-        setEvent(props.event)
-    }, [])
+export default function ListItem({ event, url, handleSelectEvent }: ListItem) {
+    const star = 'src/assets/star.svg';
+    const clock = 'src/assets/clock.svg';
+    const location = 'src/assets/location.svg';
 
     function handleMouseClick() {
-        if (props.handleSelectEvent != 'error')
-            props.handleSelectEvent(props.url)
+        // if (props.handleSelectEvent != 'error')
+        handleSelectEvent(url);
     }
 
     return (

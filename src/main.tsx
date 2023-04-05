@@ -4,18 +4,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import Home from './routes/Home'
 import '/src/styles/global.css'
-import Coverages from './routes/EventsList'
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
-    children: [
-      {
-        index: true,
-        element: <Coverages />
-      },
-    ]
+    element: <Home />
   },
 ]);
 

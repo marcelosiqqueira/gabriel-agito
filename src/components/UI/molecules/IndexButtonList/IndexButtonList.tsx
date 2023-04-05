@@ -37,7 +37,6 @@ export default function IndexButtonList({
         }
     }
 
-
     function getTotalIndexPages() {
         const lastEvent: DetailedEvent = events[events.length - 1];
         if (lastEvent)
