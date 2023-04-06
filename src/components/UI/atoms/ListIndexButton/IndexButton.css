@@ -1,45 +1,49 @@
 #home-index-buttons {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  position: absolute;
-  top: 90%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: absolute;
+    top: 90%;
 }
 
 #home-index-buttons button {
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  border: none;
-  background-color: var(--unfocused-gray);
-  cursor: pointer;
-  color: transparent;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--unfocused-gray);
+    cursor: pointer;
+    color: transparent;
 }
 
 #home-index-buttons button.unfocused {
-  background-color: var(--elements-white);
+    background-color: var(--elements-white);
 }
 
 .index-button {
-  width: 50px;
-  height: 50px;
-  border: 3px solid var(--elements-border);
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color .3s, transform .1s;
-  font-size: 14px;
-  font-weight: bold;
+    width: 50px;
+    height: 50px;
+    border: 3px solid var(--elements-border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.index-button[data-select="true"] {
+    background: #3C0481;
+    color: #ffff;
 }
 
 .index-button:hover {
-  background-color: var(--elements-border);
+    background-color: var(--elements-border);
 }
 
 .index-button:active {
-  transform: scale(.9);
+    transform: scale(0.9);
 }
 
 /* CSS Mobile (portrait) */
 @media only screen and (max-width: 480px) {
-
 }

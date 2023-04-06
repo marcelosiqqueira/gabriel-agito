@@ -88,6 +88,7 @@ export default function IndexButtonList({
                 label={`${generateIndex(actualPage <= (events[buttonType].totalPages) -2 ? 0 : 2)}`}
                 index={generateIndex(actualPage <= (events[buttonType].totalPages) -2 ? 0 : 2)}
                 action={ButtonAction.PAGE}
+                isSelect={actualPage === generateIndex(actualPage <= (events[buttonType].totalPages) -2 ? 0 : 2)}
                 onButtonClick={handleButtonClick}
             />
             
@@ -95,6 +96,7 @@ export default function IndexButtonList({
                 label={`${generateIndex(1)}`}
                 index={generateIndex(1)}
                 action={ButtonAction.PAGE}
+                isSelect={actualPage === generateIndex(1)}
                 onButtonClick={handleButtonClick}
             />
 
@@ -102,6 +104,7 @@ export default function IndexButtonList({
                 label={`${generateIndex(actualPage <= (events[buttonType].totalPages) -2 ? 2 : 0)}`}
                 index={generateIndex(actualPage <= (events[buttonType].totalPages) -2 ? 2 : 0)}
                 action={ButtonAction.PAGE}
+                isSelect={actualPage === generateIndex(actualPage <= (events[buttonType].totalPages) -2 ? 2 : 0)}
                 onButtonClick={handleButtonClick}
             />
             <IndexButton

@@ -68,7 +68,14 @@ function Home() {
 
     function getListEvents(eventsArray: DetailedEvent[]) {
         const currentDate = new Date()
-        const currentDataEvents = dataEvents;
+        const currentDataEvents = {
+            coverages: {
+                totalPages: 0
+            },
+            schedule: {
+                totalPages: 0
+            }
+        } as DataEvents;
         const elementsByPage = 4
 
         let coveragePageIndex = 1;

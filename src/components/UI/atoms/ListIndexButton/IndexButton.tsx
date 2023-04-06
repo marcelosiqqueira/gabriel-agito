@@ -13,16 +13,17 @@ interface IndexButtonProps {
     label: string;
     action: ButtonAction;
     index?: number;
+    isSelect?: boolean
     onButtonClick(props: PaginatedProps | number): void;
 }
 
-export default function IndexButton({ label, onButtonClick, action, index }: IndexButtonProps) {
+export default function IndexButton({ label, onButtonClick, action, index, isSelect = false }: IndexButtonProps) {
     function handleButtonClick() {
         onButtonClick({ action, index });
     }
 
     return (
-        <button className="index-button" onClick={handleButtonClick}>
+        <button className="index-button" data-select={isSelect} onClick={handleButtonClick}>
             {label}
         </button>
     );
