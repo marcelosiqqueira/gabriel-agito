@@ -2,53 +2,46 @@ import { useState, useEffect, useContext } from "react";
 import HomeTemplate from "../templates/HomeTemplate/HomeTemplate";
 import { DetailedEvent } from "../Interfaces/DetailedEvent";
 import { EventType } from "../Interfaces/EventType";
-import { getGreaterDate } from "../func/functions";
-import { basePhotoUrl, apiUrl, apiMainFolderUrl } from "../const/const";
-import { useGlobal } from "../context/global";
+import { fetchData } from "../func/functions";
 import HomeMain from "../components/UI/organisms/HomeMain/HomeMain";
 import Events from "../components/UI/organisms/Events/Events";
 import MainImageCarousel from "../components/UI/organisms/MainImageCarousel/MainImageCarousel";
 
+export enum SelectButtonKey {
+    COVERAGES = 'coverages',
+    SCHEDULE = 'schedule'
+}
+
+export interface DataEvents {
+    [SelectButtonKey.COVERAGES]: {
+        totalPages: number;
+        [key: number]: DetailedEvent[]
+    },
+    [SelectButtonKey.SCHEDULE]: {
+        totalPages: number;
+        [key: number]: DetailedEvent[]
+    }
+}
 
 function Home() {
-    const [selectedButton, setSelectedButton] = useState('coverages')
+    const [selectedButton, setSelectedButton] = useState<SelectButtonKey>(SelectButtonKey.COVERAGES)
     const [selectedEventUrl, setSelectedEventUrl] = useState('')
-    const [coverageEvents, setCoverageEvents] = useState<DetailedEvent[]>([])
-    const [scheduleEvents, setScheduleEvents] = useState<DetailedEvent[]>([])
+    const [dataEvents, setCoverageEvents] = useState<DataEvents>({
+        coverages: {
+            totalPages: 0
+        },
+        schedule: {
+            totalPages: 0
+        }
+    } as DataEvents)
 
-    useEffect(() => {
-        getEvents()
-    }, [])
 
-    return (
-        <HomeTemplate handleHeaderClick={handleHeaderClick}>
-            <HomeMain >
-                <MainImageCarousel coverageEvents={coverageEvents} />
-            </HomeMain>
-
-            <Events
-                selectedButton={selectedButton}
-                setSelectedButton={setSelectedButton}
-                coverageEvents={coverageEvents}
-                scheduleEvents={scheduleEvents}
-                selectedEventUrl={selectedEventUrl}
-                setSelectedEventUrl={setSelectedEventUrl} 
-            />
-        </HomeTemplate>
-    )
-
-    function handleHeaderClick(text: string) {
-        setSelectedButton(text)
-    }
-
-    async function fetchData(url: string): Promise<any> {
-        const res = await fetch(url)
-        const data = await res.json()
-        return data
+    function handleSelectedEventUrl(buttonType: SelectButtonKey) {
+        setSelectedButton(buttonType)
     }
 
     async function getEvents(): Promise<void> {
-        const data = await fetchData(apiUrl)
+        const data = await fetchData<EventType[]>('')
         const events: EventType[] = []
         data.forEach((element: EventType) => {
             events.push(element)
@@ -56,13 +49,13 @@ function Home() {
         createDetailedEvent(events)
     }
 
-    function createDetailedEvent(array: any) {
+    function createDetailedEvent(array: EventType[]) {
         const eventArray: DetailedEvent[] = []
-        array.forEach((event: any) => {
-            const stringArray = event.name.split('--')
+        array.forEach(({ id, name }: EventType) => {
+            const stringArray = name.split('--')
             const detailedEvent: DetailedEvent = {
-                id: event.id,
-                date: stringArray[0],
+                id: id,
+                date: new Date(stringArray[0].replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$2-$1-$3')),
                 time: stringArray[1],
                 name: stringArray[2],
                 local: stringArray[3],
@@ -73,44 +66,65 @@ function Home() {
         getListEvents(eventArray)
     }
 
-    function getListEvents(eventsArray: any) {
-        let date = new Date()
-        const coverageArray: DetailedEvent[] = []
-        const scheduleArray: DetailedEvent[] = []
-        let countCoverage = 0;
-        let countSchedule = 0;
+    function getListEvents(eventsArray: DetailedEvent[]) {
+        const currentDate = new Date()
+        const currentDataEvents = dataEvents;
+        const elementsByPage = 4
 
-        let pageIdCoverage =  1;
-        let pageIdSchedule =  1;
-        eventsArray.forEach((event: DetailedEvent) => {
-            if (getGreaterDate(date.toLocaleDateString('pt-BR'), event.date) === -1)
-            {
-                if(countCoverage == 3){
-                    pageIdCoverage++;    
-                    countCoverage = 0;
+        let coveragePageIndex = 1;
+        let schedulePageIndex = 1;
+
+        for (const { id, name, date, local, pageId, time } of eventsArray) {
+            if (currentDate.getTime() > date.getTime()) {
+                if (currentDataEvents[SelectButtonKey.COVERAGES][coveragePageIndex]?.length >= elementsByPage) {
+                    coveragePageIndex++;
+                    currentDataEvents[SelectButtonKey.COVERAGES].totalPages = coveragePageIndex
                 }
-                event.pageId = pageIdCoverage;
-                coverageArray.push(event)
-                countCoverage++;
-            }else{
-                if(countSchedule == 3){
-                    pageIdSchedule++;
-                    countSchedule = 0;
+
+                console.log('Quantidade de itens', currentDataEvents[SelectButtonKey.COVERAGES][coveragePageIndex]?.length ?? 0, 'Pagina', coveragePageIndex)
+
+                if (Array.isArray(currentDataEvents[SelectButtonKey.COVERAGES][coveragePageIndex])) {
+                    currentDataEvents[SelectButtonKey.COVERAGES][coveragePageIndex].push({ id, name, date, local, pageId, time });
+                } else {
+                    currentDataEvents[SelectButtonKey.COVERAGES][coveragePageIndex] = [{ id, name, date, local, pageId, time }]
                 }
-                event.pageId = pageIdSchedule;
-                scheduleArray.push(event)
-                countSchedule++;
-            }      
-        });
 
-        setCoverageEvents(coverageArray)
-        console.log(scheduleArray)
-        setScheduleEvents(scheduleArray)
+                continue;
+            }
 
-        //-->
-        setSelectedEventUrl(coverageArray[0]?.id ?? 'error')
-        //-->
+            if (currentDataEvents[SelectButtonKey.SCHEDULE][schedulePageIndex]?.length >= elementsByPage) {
+                schedulePageIndex++;
+                currentDataEvents[SelectButtonKey.SCHEDULE].totalPages = schedulePageIndex
+            }
+
+            if (Array.isArray(currentDataEvents[SelectButtonKey.SCHEDULE][schedulePageIndex])) {
+                currentDataEvents[SelectButtonKey.SCHEDULE][schedulePageIndex].push({ id, name, date, local, pageId, time });
+            } else {
+                currentDataEvents[SelectButtonKey.SCHEDULE][schedulePageIndex] = [{ id, name, date, local, pageId, time }]
+            }
+        }
+
+        setCoverageEvents(currentDataEvents)
+        setSelectedEventUrl(currentDataEvents[SelectButtonKey.COVERAGES][1][0]?.id ?? 'error')
     }
 
+    useEffect(() => {
+        getEvents()
+    }, [])
+
+    return (
+        <HomeTemplate handleHeaderClick={handleSelectedEventUrl}>
+            <HomeMain >
+                <MainImageCarousel coverageEvents={dataEvents} />
+            </HomeMain>
+
+            <Events
+                selectedButton={selectedButton}
+                handleSelectedEventUrl={handleSelectedEventUrl}
+                dataEvents={dataEvents}
+                selectedEventUrl={selectedEventUrl}
+            />
+        </HomeTemplate>
+    )
 }
 export default Home;

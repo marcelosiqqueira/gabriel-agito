@@ -13,7 +13,6 @@ export default function ListItem({ event, url, handleSelectEvent }: ListItem) {
     const location = 'src/assets/location.svg';
 
     function handleMouseClick() {
-        // if (props.handleSelectEvent != 'error')
         handleSelectEvent(url);
     }
 
@@ -27,7 +26,7 @@ export default function ListItem({ event, url, handleSelectEvent }: ListItem) {
             <div>
                 <div>
                     <img src={clock} alt="clock icon" />
-                    <span>{event?.date}</span>
+                    <span>{event?.date.toLocaleDateString('pt-BR')}</span>
                 </div>
                 <div>
                     <img src={location} alt="location pin icon" />

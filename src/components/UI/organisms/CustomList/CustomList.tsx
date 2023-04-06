@@ -4,19 +4,20 @@ import IndexButtonList from "../../molecules/IndexButtonList/IndexButtonList";
 import "./CustomList.css"
 import { useState, useEffect } from "react";
 import { DetailedEvent } from "../../../../Interfaces/DetailedEvent";
+import { DataEvents, SelectButtonKey } from "../../../../routes/Home";
 
 interface CustomListProps {
-    listType: string;
-    events: DetailedEvent[]
+    buttonType: SelectButtonKey;
+    events: DataEvents
     handleSelectEvent(url: string): void
 }
 
-export default function CustomList({ events, listType, handleSelectEvent }: CustomListProps) {
+export default function CustomList({ events, buttonType, handleSelectEvent }: CustomListProps) {
     const [actualPage, setActualPage] = useState(1);
 
     useEffect(() => {
         setActualPage(1);
-    },[listType])
+    },[buttonType])
 
     function handleActualPage(page: number) {
         setActualPage(page);
@@ -25,9 +26,8 @@ export default function CustomList({ events, listType, handleSelectEvent }: Cust
     return (
         <ul id="eventsList">
             {
-                events
-                    .filter(event => event.pageId === actualPage)
-                    .map((event) => (
+                events[buttonType][actualPage]
+                    ?.map((event) => (
                         <ListItem 
                             key={event?.id} 
                             event={event} 
@@ -39,7 +39,7 @@ export default function CustomList({ events, listType, handleSelectEvent }: Cust
             <li>
                 <IndexButtonList 
                     events={events}
-                    listType={listType}
+                    buttonType={buttonType}
                     actualPage={actualPage}
                     handleFunction={handleActualPage}
                 />

@@ -1,19 +1,21 @@
 import "./Events.css";
 import ImageCarousel from "../ImageCarousel";
 import CustomList from "../CustomList/CustomList";
+import { DataEvents, SelectButtonKey } from "../../../../routes/Home";
+
+interface EventsProps {
+    dataEvents: DataEvents;
+    selectedEventUrl: string;
+    selectedButton: SelectButtonKey;
+    handleSelectedEventUrl(buttonType: SelectButtonKey): void;
+}
 
 function Events({
-    setSelectedButton,
-    coverageEvents,
-    scheduleEvents,
+    dataEvents,
     selectedEventUrl,
-    setSelectedEventUrl,
+    handleSelectedEventUrl,
     selectedButton
-}: any) {
-
-    function handleSelectEvent(url: string) {
-        setSelectedEventUrl(url);
-    }
+}: EventsProps) {
 
     return (
         <section id="events">
@@ -32,13 +34,13 @@ function Events({
                 <div className="header-buttons">
                     <button
                         className={`coverages-button ${selectedButton === "schedule" ? "unfocused" : ""}`}
-                        onClick={() => setSelectedButton("coverages")}
+                        onClick={() => handleSelectedEventUrl(SelectButtonKey.COVERAGES)}
                     >
                         Coberturas
                     </button>
                     <button
                         className={`schedule-button ${selectedButton === "coverages" ? "unfocused" : ""}`}
-                        onClick={() => setSelectedButton("schedule")}
+                        onClick={() => handleSelectedEventUrl(SelectButtonKey.SCHEDULE)}
                     >
                         Agenda
                     </button>
@@ -46,13 +48,9 @@ function Events({
 
                 <div className="events-list">
                     <CustomList
-                        events={
-                            selectedButton === "coverages"
-                                ? coverageEvents
-                                : scheduleEvents
-                        }
-                        listType={selectedButton}
-                        handleSelectEvent={handleSelectEvent}
+                        events={dataEvents}
+                        buttonType={selectedButton}
+                        handleSelectEvent={handleSelectedEventUrl}
                     />
                 </div>
                 <div className="events-buttons">

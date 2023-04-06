@@ -13,7 +13,7 @@ interface IndexButtonProps {
     label: string;
     action: ButtonAction;
     index?: number;
-    onButtonClick(props: PaginatedProps): void;
+    onButtonClick(props: PaginatedProps | number): void;
 }
 
 export default function IndexButton({ label, onButtonClick, action, index }: IndexButtonProps) {
