@@ -136,9 +136,6 @@ function Home() {
                 dataEvents={dataEvents}
                 selectedEventUrl={selectedEventUrl}
             />
-
-            <img src="https://drive.google.com/uc?export=view&id=1_Onvbj2QQUbew2LFqUlICGI_c64cpaGg" alt="" />
-            <img src="https://drive.google.com/uc?export=view&id=1_Onvbj2QQUbew2LFqUlICGI_c64cpaGg&size=short" alt="" />
         </HomeTemplate>
     )
 }
