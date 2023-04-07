@@ -1,4 +1,4 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import HomeTemplate from "../templates/HomeTemplate/HomeTemplate";
 import { DetailedEvent } from "../Interfaces/DetailedEvent";
 import { EventType } from "../Interfaces/EventType";
@@ -80,7 +80,7 @@ function Home() {
                 totalPages: 0
             }
         } as DataEvents;
-        const elementsByPage = 4
+        const elementsByPage = 7
 
         let coveragePageIndex = 1;
         let schedulePageIndex = 1;
@@ -130,7 +130,7 @@ function Home() {
             </HomeMain>
 
             <Events
-                selectedButton={SelectButtonKey.COVERAGES}
+                selectedButton={selectedButton}
                 handleSelectedEventUrl={handleSelectedEventUrl}
                 handleSelectedButtonType={handleSelectedButtonType}
                 dataEvents={dataEvents}
