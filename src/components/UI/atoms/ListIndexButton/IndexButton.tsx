@@ -14,7 +14,7 @@ interface IndexButtonProps {
     action: ButtonAction;
     index?: number;
     isSelect?: boolean
-    onButtonClick(props: PaginatedProps | number): void;
+    onButtonClick(props: PaginatedProps): void;
 }
 
 export default function IndexButton({ label, onButtonClick, action, index, isSelect = false }: IndexButtonProps) {

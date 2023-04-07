@@ -7,16 +7,17 @@ interface EventsProps {
     dataEvents: DataEvents;
     selectedEventUrl: string;
     selectedButton: SelectButtonKey;
-    handleSelectedEventUrl(buttonType: SelectButtonKey): void;
+    handleSelectedButtonType(buttonType: SelectButtonKey): void;
+    handleSelectedEventUrl(url: string): void;
 }
 
 function Events({
     dataEvents,
     selectedEventUrl,
+    handleSelectedButtonType,
     handleSelectedEventUrl,
-    selectedButton
+    selectedButton,
 }: EventsProps) {
-
     return (
         <section id="events">
             <div className="events-container">
@@ -33,14 +34,22 @@ function Events({
             <div className="events-container2">
                 <div className="header-buttons">
                     <button
-                        className={`coverages-button ${selectedButton === "schedule" ? "unfocused" : ""}`}
-                        onClick={() => handleSelectedEventUrl(SelectButtonKey.COVERAGES)}
+                        className={`coverages-button ${
+                            selectedButton === "schedule" ? "unfocused" : ""
+                        }`}
+                        onClick={() =>
+                            handleSelectedButtonType(SelectButtonKey.COVERAGES)
+                        }
                     >
                         Coberturas
                     </button>
                     <button
-                        className={`schedule-button ${selectedButton === "coverages" ? "unfocused" : ""}`}
-                        onClick={() => handleSelectedEventUrl(SelectButtonKey.SCHEDULE)}
+                        className={`schedule-button ${
+                            selectedButton === "coverages" ? "unfocused" : ""
+                        }`}
+                        onClick={() =>
+                            handleSelectedButtonType(SelectButtonKey.SCHEDULE)
+                        }
                     >
                         Agenda
                     </button>

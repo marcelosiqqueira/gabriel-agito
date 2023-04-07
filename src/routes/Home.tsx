@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect} from "react";
 import HomeTemplate from "../templates/HomeTemplate/HomeTemplate";
 import { DetailedEvent } from "../Interfaces/DetailedEvent";
 import { EventType } from "../Interfaces/EventType";
@@ -35,13 +35,17 @@ function Home() {
         }
     } as DataEvents)
 
+    function handleSelectedEventUrl(url: string) {
+        setSelectedEventUrl(url)
+    }
 
-    function handleSelectedEventUrl(buttonType: SelectButtonKey) {
+
+    function handleSelectedButtonType(buttonType: SelectButtonKey) {
         setSelectedButton(buttonType)
     }
 
     async function getEvents(): Promise<void> {
-        const data = await fetchData<EventType[]>('')
+        const data = await fetchData<EventType[]>('events')
         const events: EventType[] = []
         data.forEach((element: EventType) => {
             events.push(element)
@@ -122,15 +126,19 @@ function Home() {
     return (
         <HomeTemplate handleHeaderClick={handleSelectedEventUrl}>
             <HomeMain >
-                <MainImageCarousel coverageEvents={dataEvents} />
+                <MainImageCarousel eventsData={dataEvents} />
             </HomeMain>
 
             <Events
-                selectedButton={selectedButton}
+                selectedButton={SelectButtonKey.COVERAGES}
                 handleSelectedEventUrl={handleSelectedEventUrl}
+                handleSelectedButtonType={handleSelectedButtonType}
                 dataEvents={dataEvents}
                 selectedEventUrl={selectedEventUrl}
             />
+
+            <img src="https://drive.google.com/uc?export=view&id=1_Onvbj2QQUbew2LFqUlICGI_c64cpaGg" alt="" />
+            <img src="https://drive.google.com/uc?export=view&id=1_Onvbj2QQUbew2LFqUlICGI_c64cpaGg&size=short" alt="" />
         </HomeTemplate>
     )
 }

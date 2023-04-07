@@ -23,6 +23,8 @@ export default function CustomList({ events, buttonType, handleSelectEvent }: Cu
         setActualPage(page);
     }
 
+    console.log(actualPage)
+
     return (
         <ul id="eventsList">
             {

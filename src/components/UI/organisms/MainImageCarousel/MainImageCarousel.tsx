@@ -7,45 +7,46 @@ import { basePhotoUrl } from '../../../../const/const'
 import { DataEvents, SelectButtonKey } from '../../../../routes/Home'
 import { ImageInfo } from '../../../../Interfaces/ImageInfo'
 import { DetailedEvent } from '../../../../Interfaces/DetailedEvent'
+import { fetchData } from '../../../../func/functions'
+import { EventType } from '../../../../Interfaces/EventType'
+import { PaginatedProps } from '../../molecules/IndexButtonList/IndexButtonList'
 
 interface MainImageCarousel {
-    coverageEvents:  DataEvents
+    eventsData:  DataEvents
 }
 
-export default function MainImageCarousel({ coverageEvents }: MainImageCarousel) {
+export default function MainImageCarousel({ eventsData }: MainImageCarousel) {
     const imageError = 'src/assets/imageError.webp'
     const [showModal, setShowModal] = useState(false);
     const [imageArray, setImageArray] = useState<ImageInfo[]>([])
     const [carouselIndex, setCarouselIndex] = useState(0)
 
     useEffect(() => {
-        loadEventImages()
-    }, [coverageEvents])
+        getEvents()
+    }, [eventsData])
 
-    async function loadEventImages() {
+    async function getEvents(): Promise<void> {
+        const data = await fetchData<EventType[]>('principal')
+        loadEventImages(data)
+    }
+
+    async function loadEventImages(data: EventType[]) {
         const eventsLis: ImageInfo[] = []
 
-        for (const [, detailedEvents] of Object.entries(coverageEvents[SelectButtonKey.SCHEDULE])) {
-            eventsLis.push(...(detailedEvents as DetailedEvent[])?.map(({ id, name }) => ({ 
+        for (const { id, name } of data) {
+            eventsLis.push({
                 id,
-                url:basePhotoUrl + id,
-                alt: `Imagem do evento - ${name.split('--')[2]}` 
-            })))
-        }
-
-        for (const [, detailedEvents] of Object.entries(coverageEvents[SelectButtonKey.COVERAGES])) {
-            eventsLis.push(...(detailedEvents as DetailedEvent[])?.map(({ id, name }) => ({ 
-                id,
-                url:basePhotoUrl + id,
-                alt: `Imagem do evento - ${name.split('--')[2]}` 
-            })))
+                url: basePhotoUrl + id,
+                alt: `Imagem do evento - ${name.split("--")[2]}`,
+            })
         }
 
         setImageArray(eventsLis)
     }
 
-    function handleButtonClick(id: number) {
-        setCarouselIndex(id)
+    function handleButtonClick({ index}: PaginatedProps) {
+        if (!index) return
+        setCarouselIndex(index)
     }
 
     function handleCloseModal() {
