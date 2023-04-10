@@ -4,7 +4,7 @@
     overflow: hidden;
 }
 
-.container, header, #home, #events, #about {
+.container main, header nav, #home, #events, #about {
     max-width: 1440px;
     margin: 0 auto;
 }

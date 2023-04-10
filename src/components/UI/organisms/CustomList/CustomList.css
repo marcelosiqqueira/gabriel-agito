@@ -8,8 +8,7 @@
 @media only screen and (max-width: 480px) {
     #eventsList {
         padding: 0 7px 7px 7px;
-        height: 480px;
-        overflow: scroll;
+        height: 800px;
     }
 }    
 
