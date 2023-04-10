@@ -1,0 +1,31 @@
+#main-image-carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+#main-image-carousel img {
+    object-fit:contain;
+    aspect-ratio: 3 / 2;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+@media only screen and (max-width: 480px) {
+    
+    #main-image-carousel {
+        width: 100vw;
+        height: 350px;
+    }
+
+    #main-image-carousel img {
+        height: 320px;
+        max-width: 100%;
+    }
+
+}

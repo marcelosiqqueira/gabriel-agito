@@ -54,7 +54,7 @@ export default function MainImageCarousel({ eventsData }: MainImageCarousel) {
     }
 
     return (
-        <div id="image-carousel">
+        <div id="main-image-carousel">
             {showModal && createPortal(
                 <ImageModal imageArray={imageArray} onClose={handleCloseModal} />,
                 document.body

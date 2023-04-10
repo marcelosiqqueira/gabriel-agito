@@ -26,26 +26,27 @@ export default function CustomList({ events, buttonType, handleSelectEvent }: Cu
     console.log(actualPage)
 
     return (
-        <ul id="eventsList">
-            {
-                events[buttonType][actualPage]
-                    ?.map((event) => (
-                        <ListItem 
-                            key={event?.id} 
-                            event={event} 
-                            url={event?.id} 
-                            handleSelectEvent={handleSelectEvent}
-                        /> 
-                ))
-            }
-            <li>
-                <IndexButtonList 
+
+        <div id="list-content">
+            <ul id="eventsList">
+                {
+                    events[buttonType][actualPage]
+                        ?.map((event) => (
+                            <ListItem
+                                key={event?.id}
+                                event={event}
+                                url={event?.id}
+                                handleSelectEvent={handleSelectEvent}
+                            />
+                    ))
+                }
+            </ul>
+            <IndexButtonList 
                     events={events}
                     buttonType={buttonType}
                     actualPage={actualPage}
                     handleFunction={handleActualPage}
-                />
-            </li>
-        </ul>
+             />
+        </div>
     )
 }

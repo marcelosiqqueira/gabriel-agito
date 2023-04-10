@@ -1,6 +1,7 @@
 
-#eventsList {
-    background-color: var(--elements-gray);
+.events-list {
+    position: relative;
+
 }
 
 /* CSS Mobile (portrait) */
@@ -15,6 +16,7 @@
 /* CSS Desktop */
 
 @media only screen and (min-width: 1280px) {
+
 
 }
 
