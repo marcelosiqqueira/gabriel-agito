@@ -1,5 +1,6 @@
 import IndexButton from "../../atoms/ListIndexButton/IndexButton"
-import { useState, useEffect } from "react"
+import React from 'react';
+import { useState, useEffect} from "react"
 import './IndexButtonList.css'
 import { DetailedEvent } from "../../../../Interfaces/DetailedEvent";
 
@@ -25,9 +26,23 @@ export default function IndexButtonList(props: any) {
 
     function setButtonsIndexList(){
         const indexList = [];
+
         indexList.push(<IndexButton key={1} id={1} symbol={'number'} handleButtonClick={handleButtonClick} />)
         indexList.push(<IndexButton key={1} id={2} symbol={'number'} handleButtonClick={handleButtonClick} />)
         indexList.push(<IndexButton key={1} id={3} symbol={'number'} handleButtonClick={handleButtonClick} />)
+
+        if(props.actualPage === 1){
+            // indexList.map((i) => (){
+
+            // })
+        }
+
+        if(props.actualPage === getTotalIndexPages)
+        {
+            console.log('entreiii')
+            // indexList[props.actualPage] = React.cloneElement(indexList[props.actualPage], { id: props.actualPage });
+        }
+        
         setIndexList(indexList)
         // return indexList;
     }
