@@ -1,7 +1,7 @@
 import './HomeMain.css'
 import MainImageCarousel from '../MainImageCarousel/MainImageCarousel'
 
-export default function HomeMain({ coverageEvents }: any) {
+export default function HomeMain({ children }: any) {
   return (
     <section id='home'>
       <div className='home-description'>
@@ -15,7 +15,7 @@ export default function HomeMain({ coverageEvents }: any) {
         </div>
       </div>
       <div className='home-images'>
-        <MainImageCarousel coverageEvents={coverageEvents}></MainImageCarousel>
+        {children}
       </div>
     </section>
   )

@@ -2,39 +2,51 @@ import './MainImageCarousel.css'
 import { createPortal } from 'react-dom'
 import ImageModal from '../ImageModal/ImageModal'
 import { useState, useEffect } from 'react'
-import IndexButton from '../../atoms/ListIndexButton/IndexButton'
-import { basePhotoUrl, apiMainFolderUrl } from '../../../../const/const'
+import IndexButton, { ButtonAction } from '../../atoms/ListIndexButton/IndexButton'
+import { basePhotoUrl } from '../../../../const/const'
+import { DataEvents, SelectButtonKey } from '../../../../routes/Home'
+import { ImageInfo } from '../../../../Interfaces/ImageInfo'
+import { DetailedEvent } from '../../../../Interfaces/DetailedEvent'
+import { fetchData } from '../../../../func/functions'
+import { EventType } from '../../../../Interfaces/EventType'
+import { PaginatedProps } from '../../molecules/IndexButtonList/IndexButtonList'
 
-export default function MainImageCarousel({ coverageEvents }: any) {
+interface MainImageCarousel {
+    eventsData:  DataEvents
+}
+
+export default function MainImageCarousel({ eventsData }: MainImageCarousel) {
     const imageError = 'src/assets/imageError.webp'
     const [showModal, setShowModal] = useState(false);
-    const [imageArray, setImageArray] = useState<any>([])
+    const [imageArray, setImageArray] = useState<ImageInfo[]>([])
     const [carouselIndex, setCarouselIndex] = useState(0)
 
     useEffect(() => {
-        loadEventImages()
-    }, [])
+        getEvents()
+    }, [eventsData])
 
-    async function loadEventImages() {
-        const data = await fetchData()
-        const array: any = []
-        data.forEach((element: any) => {
-            const image = new Image()
-            image.src = (basePhotoUrl + element.id)
-            array.unshift(image)
-        });
-        setImageArray(array)
+    async function getEvents(): Promise<void> {
+        const data = await fetchData<EventType[]>('principal')
+        loadEventImages(data)
     }
 
-    async function fetchData(): Promise<any> {
-        const res = await fetch(apiMainFolderUrl)
-        const data = await res.json()
-        return data
+    async function loadEventImages(data: EventType[]) {
+        const eventsLis: ImageInfo[] = []
+
+        for (const { id, name } of data) {
+            eventsLis.push({
+                id,
+                url: basePhotoUrl + id,
+                alt: `Imagem do evento - ${name.split("--")[2]}`,
+            })
+        }
+
+        setImageArray(eventsLis)
     }
 
-    function handleButtonClick(id: number) {
-        console.log('botao atual:',id)
-        setCarouselIndex(id)
+    function handleButtonClick({ index}: PaginatedProps) {
+        if (!index) return
+        setCarouselIndex(index)
     }
 
     function handleCloseModal() {
@@ -44,16 +56,16 @@ export default function MainImageCarousel({ coverageEvents }: any) {
     return (
         <div id="main-image-carousel">
             {showModal && createPortal(
-                <ImageModal imageArray={imageArray} onClose={handleCloseModal} imageUrl={imageArray[carouselIndex]?.src} />,
+                <ImageModal imageArray={imageArray} onClose={handleCloseModal} />,
                 document.body
             )}
-            <img src={imageArray[carouselIndex]?.src ? imageArray[carouselIndex]?.src : imageError} alt="img" onClick={handleCloseModal} />
+            <img src={imageArray[carouselIndex]?.url ? imageArray[carouselIndex]?.url : imageError} alt="img" onClick={handleCloseModal} />
             <div id='home-index-buttons'>
-                <IndexButton value='♦' id={0} handleButtonClick={handleButtonClick}></IndexButton>
-                <IndexButton value='♦' id={1} handleButtonClick={handleButtonClick}></IndexButton>
-                <IndexButton value='♦' id={2} handleButtonClick={handleButtonClick}></IndexButton>
-                <IndexButton value='♦' id={3} handleButtonClick={handleButtonClick}></IndexButton>
-                <IndexButton value='♦' id={4} handleButtonClick={handleButtonClick}></IndexButton>
+                <IndexButton label='♦' index={0} action={ButtonAction.PAGE} onButtonClick={handleButtonClick}></IndexButton>
+                <IndexButton label='♦' index={1} action={ButtonAction.PAGE} onButtonClick={handleButtonClick}></IndexButton>
+                <IndexButton label='♦' index={2} action={ButtonAction.PAGE} onButtonClick={handleButtonClick}></IndexButton>
+                <IndexButton label='♦' index={3} action={ButtonAction.PAGE} onButtonClick={handleButtonClick}></IndexButton>
+                <IndexButton label='♦' index={4} action={ButtonAction.PAGE} onButtonClick={handleButtonClick}></IndexButton>
             </div>
         </div>
     )

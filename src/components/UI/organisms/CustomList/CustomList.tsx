@@ -3,49 +3,50 @@ import ListItem from "../../molecules/ListItem/ListItem";
 import IndexButtonList from "../../molecules/IndexButtonList/IndexButtonList";
 import "./CustomList.css"
 import { useState, useEffect } from "react";
+import { DetailedEvent } from "../../../../Interfaces/DetailedEvent";
+import { DataEvents, SelectButtonKey } from "../../../../routes/Home";
 
-export default function CustomList(props: any) {
-    const [totalPages, setTotalPages] = useState(1)
+interface CustomListProps {
+    buttonType: SelectButtonKey;
+    events: DataEvents
+    handleSelectEvent(url: string): void
+}
+
+export default function CustomList({ events, buttonType, handleSelectEvent }: CustomListProps) {
     const [actualPage, setActualPage] = useState(1);
 
     useEffect(() => {
-        setListItem(props)
-        // console.log('pagina atuallll', actualPage)
-    },[actualPage, props.listType])
-
-    useEffect(() => {
         setActualPage(1);
-    },[props.listType])
+    },[buttonType])
 
-    function setListItem(props: any) {
-        const ListItemArray = []
-        for (let i = 0; i < props.events.length; i++) {
-            if(props.events[i].pageId === actualPage){
-                ListItemArray.push(
-                    <ListItem 
-                        key={props.events[i]?.id} 
-                        event={props.events[i]} 
-                        url={props.events[i]?.id} 
-                        handleSelectEvent={props.handleSelectEvent}
-                    ></ListItem> 
-                )
-            }
-        }
-        // console.log('novo events:', props.events) ok, events chegando aqui
-        return ListItemArray
+    function handleActualPage(page: number) {
+        setActualPage(page);
     }
 
+    console.log(actualPage)
+
     return (
+
         <div id="list-content">
             <ul id="eventsList">
-                {setListItem(props)}
+                {
+                    events[buttonType][actualPage]
+                        ?.map((event) => (
+                            <ListItem
+                                key={event?.id}
+                                event={event}
+                                url={event?.id}
+                                handleSelectEvent={handleSelectEvent}
+                            />
+                    ))
+                }
             </ul>
             <IndexButtonList 
-            events={props.events}
-            listType={props.listType}
-            actualPage={actualPage}
-            setActualPage={setActualPage}>
-            </IndexButtonList>
+                    events={events}
+                    buttonType={buttonType}
+                    actualPage={actualPage}
+                    handleFunction={handleActualPage}
+             />
         </div>
     )
 }
