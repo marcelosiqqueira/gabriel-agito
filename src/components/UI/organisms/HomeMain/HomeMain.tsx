@@ -1,5 +1,4 @@
 import './HomeMain.css'
-import MainImageCarousel from '../MainImageCarousel/MainImageCarousel'
 
 export default function HomeMain({ children }: any) {
   return (
@@ -7,11 +6,11 @@ export default function HomeMain({ children }: any) {
       <div className='home-description'>
         <h2>Nome do evento</h2>
         <div className='home-info'>
-          <span>Data: </span>
-          <span>??/??/??</span>
+          {/* <span>Data: </span> */}
+          {/* <span>??/??/??</span> */}
           <br />
-          <span>Local: </span>
-          <span>Local teste</span>
+          <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet quas maiores, asperiores dolorem earum reprehenderit optio commodi iste repellat illum nulla et assumenda. Harum eius omnis ad quam itaque consectetur?</span>
+          {/* <span>Local teste</span> */}
         </div>
       </div>
       <div className='home-images'>

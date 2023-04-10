@@ -4,18 +4,13 @@ import ImageModal from '../ImageModal/ImageModal'
 import { useState, useEffect } from 'react'
 import IndexButton, { ButtonAction } from '../../atoms/ListIndexButton/IndexButton'
 import { basePhotoUrl } from '../../../../const/const'
-import { DataEvents, SelectButtonKey } from '../../../../routes/Home'
 import { ImageInfo } from '../../../../Interfaces/ImageInfo'
-import { DetailedEvent } from '../../../../Interfaces/DetailedEvent'
 import { fetchData } from '../../../../func/functions'
 import { EventType } from '../../../../Interfaces/EventType'
 import { PaginatedProps } from '../../molecules/IndexButtonList/IndexButtonList'
+import React from 'react'
 
-interface MainImageCarousel {
-    eventsData:  DataEvents
-}
-
-export default function MainImageCarousel({ eventsData }: MainImageCarousel) {
+export default React.memo(function MainImageCarousel() {
     const imageError = 'src/assets/imageError.webp'
     const [showModal, setShowModal] = useState(false);
     const [imageArray, setImageArray] = useState<ImageInfo[]>([])
@@ -23,7 +18,9 @@ export default function MainImageCarousel({ eventsData }: MainImageCarousel) {
 
     useEffect(() => {
         getEvents()
-    }, [eventsData])
+    }, [])
+
+    console.log('Carrossel renderizou')
 
     async function getEvents(): Promise<void> {
         const data = await fetchData<EventType[]>('principal')
@@ -40,11 +37,10 @@ export default function MainImageCarousel({ eventsData }: MainImageCarousel) {
                 alt: `Imagem do evento - ${name.split("--")[2]}`,
             })
         }
-
         setImageArray(eventsLis)
     }
 
-    function handleButtonClick({ index}: PaginatedProps) {
+    function handleButtonClick({ index }: PaginatedProps) {
         if (!index) return
         setCarouselIndex(index)
     }
@@ -69,4 +65,4 @@ export default function MainImageCarousel({ eventsData }: MainImageCarousel) {
             </div>
         </div>
     )
-}
+})

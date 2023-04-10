@@ -17,13 +17,11 @@ export default function CustomList({ events, buttonType, handleSelectEvent }: Cu
 
     useEffect(() => {
         setActualPage(1);
-    },[buttonType])
+    }, [buttonType])
 
     function handleActualPage(page: number) {
         setActualPage(page);
     }
-
-    console.log(actualPage)
 
     return (
 
@@ -38,15 +36,15 @@ export default function CustomList({ events, buttonType, handleSelectEvent }: Cu
                                 url={event?.id}
                                 handleSelectEvent={handleSelectEvent}
                             />
-                    ))
+                        ))
                 }
             </ul>
-            <IndexButtonList 
-                    events={events}
-                    buttonType={buttonType}
-                    actualPage={actualPage}
-                    handleFunction={handleActualPage}
-             />
+            <IndexButtonList
+                events={events}
+                buttonType={buttonType}
+                actualPage={actualPage}
+                handleFunction={handleActualPage}
+            />
         </div>
     )
 }

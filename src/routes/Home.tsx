@@ -39,7 +39,6 @@ function Home() {
         setSelectedEventUrl(url)
     }
 
-
     function handleSelectedButtonType(buttonType: SelectButtonKey) {
         setSelectedButton(buttonType)
     }
@@ -85,19 +84,17 @@ function Home() {
         let coveragePageIndex = 1;
         let schedulePageIndex = 1;
 
-        for (const { id, name, date, local, pageId, time } of eventsArray) {
-            if (currentDate.getTime() > date.getTime()) {
+        for (const detailedEvent of eventsArray) {
+            if (currentDate.getTime() > detailedEvent.date.getTime()) {
                 if (currentDataEvents[SelectButtonKey.COVERAGES][coveragePageIndex]?.length >= elementsByPage) {
                     coveragePageIndex++;
                     currentDataEvents[SelectButtonKey.COVERAGES].totalPages = coveragePageIndex
                 }
 
-                console.log('Quantidade de itens', currentDataEvents[SelectButtonKey.COVERAGES][coveragePageIndex]?.length ?? 0, 'Pagina', coveragePageIndex)
-
                 if (Array.isArray(currentDataEvents[SelectButtonKey.COVERAGES][coveragePageIndex])) {
-                    currentDataEvents[SelectButtonKey.COVERAGES][coveragePageIndex].push({ id, name, date, local, pageId, time });
+                    currentDataEvents[SelectButtonKey.COVERAGES][coveragePageIndex].push(detailedEvent);
                 } else {
-                    currentDataEvents[SelectButtonKey.COVERAGES][coveragePageIndex] = [{ id, name, date, local, pageId, time }]
+                    currentDataEvents[SelectButtonKey.COVERAGES][coveragePageIndex] = [detailedEvent]
                 }
 
                 continue;
@@ -109,9 +106,9 @@ function Home() {
             }
 
             if (Array.isArray(currentDataEvents[SelectButtonKey.SCHEDULE][schedulePageIndex])) {
-                currentDataEvents[SelectButtonKey.SCHEDULE][schedulePageIndex].push({ id, name, date, local, pageId, time });
+                currentDataEvents[SelectButtonKey.SCHEDULE][schedulePageIndex].push(detailedEvent);
             } else {
-                currentDataEvents[SelectButtonKey.SCHEDULE][schedulePageIndex] = [{ id, name, date, local, pageId, time }]
+                currentDataEvents[SelectButtonKey.SCHEDULE][schedulePageIndex] = [detailedEvent]
             }
         }
 
@@ -124,9 +121,9 @@ function Home() {
     }, [])
 
     return (
-        <HomeTemplate handleHeaderClick={handleSelectedEventUrl}>
+        <HomeTemplate handleHeaderClick={handleSelectedButtonType}>
             <HomeMain >
-                <MainImageCarousel eventsData={dataEvents} />
+                <MainImageCarousel />
             </HomeMain>
 
             <Events

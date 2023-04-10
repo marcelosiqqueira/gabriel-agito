@@ -2,7 +2,6 @@ import IndexButton, {
     ButtonAction,
 } from "../../atoms/ListIndexButton/IndexButton";
 import "./IndexButtonList.css";
-import { DetailedEvent } from "../../../../Interfaces/DetailedEvent";
 import { DataEvents, SelectButtonKey } from "../../../../routes/Home";
 
 interface IndexButtonListProps {
@@ -22,7 +21,7 @@ export default function IndexButtonList({
     actualPage,
     buttonType,
     events
-}: IndexButtonListProps) {    
+}: IndexButtonListProps) {
     const generateIndex = (increment: number) => {
         const size = events[buttonType].totalPages;
         if (!size) return
@@ -39,34 +38,34 @@ export default function IndexButtonList({
             return actualPage - increment
         }
     }
-    
+
     function handleButtonClick({ action, index }: PaginatedProps) {
-        const total  = events[buttonType].totalPages
+        const total = events[buttonType].totalPages
         if (!total) return;
         if (action === ButtonAction.PAGE && index) {
             handleFunction(index);
             return
         }
         switch (action) {
-            case ButtonAction.START:{
+            case ButtonAction.START: {
                 handleFunction(1)
                 break;
             }
-            case ButtonAction.NEXT:{
+            case ButtonAction.NEXT: {
                 if (actualPage + 1 > total) return
                 handleFunction(actualPage + 1)
                 break;
             }
-            case ButtonAction.PREV:{
+            case ButtonAction.PREV: {
                 if (actualPage === 1) return
                 handleFunction(actualPage - 1)
                 break;
             }
-            case ButtonAction.END:{
+            case ButtonAction.END: {
                 handleFunction(total)
                 break;
             }
-            default:{
+            default: {
                 break;
             }
         }
@@ -85,13 +84,13 @@ export default function IndexButtonList({
                 onButtonClick={handleButtonClick}
             />
             <IndexButton
-                label={`${generateIndex(actualPage <= (events[buttonType].totalPages) -2 ? 0 : 2)}`}
-                index={generateIndex(actualPage <= (events[buttonType].totalPages) -2 ? 0 : 2)}
+                label={`${generateIndex(actualPage <= (events[buttonType].totalPages) - 2 ? 0 : 2)}`}
+                index={generateIndex(actualPage <= (events[buttonType].totalPages) - 2 ? 0 : 2)}
                 action={ButtonAction.PAGE}
-                isSelect={actualPage === generateIndex(actualPage <= (events[buttonType].totalPages) -2 ? 0 : 2)}
+                isSelect={actualPage === generateIndex(actualPage <= (events[buttonType].totalPages) - 2 ? 0 : 2)}
                 onButtonClick={handleButtonClick}
             />
-            
+
             <IndexButton
                 label={`${generateIndex(1)}`}
                 index={generateIndex(1)}
@@ -101,10 +100,10 @@ export default function IndexButtonList({
             />
 
             <IndexButton
-                label={`${generateIndex(actualPage <= (events[buttonType].totalPages) -2 ? 2 : 0)}`}
-                index={generateIndex(actualPage <= (events[buttonType].totalPages) -2 ? 2 : 0)}
+                label={`${generateIndex(actualPage <= (events[buttonType].totalPages) - 2 ? 2 : 0)}`}
+                index={generateIndex(actualPage <= (events[buttonType].totalPages) - 2 ? 2 : 0)}
                 action={ButtonAction.PAGE}
-                isSelect={actualPage === generateIndex(actualPage <= (events[buttonType].totalPages) -2 ? 2 : 0)}
+                isSelect={actualPage === generateIndex(actualPage <= (events[buttonType].totalPages) - 2 ? 2 : 0)}
                 onButtonClick={handleButtonClick}
             />
             <IndexButton

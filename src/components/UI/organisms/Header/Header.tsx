@@ -1,7 +1,11 @@
 import './Header.css'
+import { SelectButtonKey } from '../../../../routes/Home'
 
+type HeaderProps = {
+    handleHeaderClick: (arg0: SelectButtonKey) => void
+}
 
-export default function Header({ handleHeaderClick }: any): JSX.Element {
+export default function Header({ handleHeaderClick }: HeaderProps): JSX.Element {
 
     function handleScrollElement(e: any) {
         switch (e.target.value) {
@@ -9,11 +13,11 @@ export default function Header({ handleHeaderClick }: any): JSX.Element {
                 document.getElementById('home')?.scrollIntoView(true)
                 break
             case 'eventos':
-                handleHeaderClick('coverages')
+                handleHeaderClick(SelectButtonKey.COVERAGES)
                 document.getElementById('events')?.scrollIntoView(true)
                 break
             case 'calendario':
-                handleHeaderClick('schedule')
+                handleHeaderClick(SelectButtonKey.SCHEDULE)
                 document.getElementById('events')?.scrollIntoView(true)
                 break
             case 'sobre':
