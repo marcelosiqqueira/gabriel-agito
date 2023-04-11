@@ -18,12 +18,13 @@ export default function ImageCarousel(props: any) {
 
     useEffect(() => {
         props.selectedEventUrl
-            ? loadEventImages(props.selectedEventUrl)
+            ? loadEventImages()
             : "erro";
     }, [props.selectedEventUrl]);
 
-    function handleButtonClick(e: any) {
-        if (e.target.value === "left" && carouselIndex != 0) {
+    function handleButtonClick(e: React.MouseEvent) {
+        console.log('oi')
+        if ((e.target as HTMLInputElement)?.value === "left" && carouselIndex != 0) {
             setCarouselIndex(carouselIndex - 1);
             if (selectedImage === 1) {
                 firstImage.current?.toggleAttribute('hidden')
@@ -37,10 +38,7 @@ export default function ImageCarousel(props: any) {
             }
         }
 
-        if (
-            e.target.value === "right" &&
-            carouselIndex != imageArray.length - 1
-        ) {
+        if ((e.target as HTMLInputElement)?.value === "right" && carouselIndex != imageArray.length - 1) {
             setCarouselIndex(carouselIndex + 1);
             if (selectedImage === 1) {
                 firstImage.current?.toggleAttribute('hidden')
@@ -59,7 +57,16 @@ export default function ImageCarousel(props: any) {
         showModal ? setShowModal(false) : setShowModal(true);
     }
 
-    async function loadEventImages(event: any) {
+    async function downloadImage() {
+        // fetch('https://drive.google.com/uc?export=view&id=1BVJSF0xiYXomgPritroziz9e2jY57V4I',
+        //     { mode: 'cors' })
+        //     .then(response => response.blob())
+        //     .then(blob => {
+        //         console.log(blob);
+        //     });
+    }
+
+    async function loadEventImages() {
         const data = await fetchData<EventType[]>(`events/${props.selectedEventUrl}`);
         const array: ImageInfo[] = [];
         data.forEach(({ id, name }) => {
@@ -73,7 +80,6 @@ export default function ImageCarousel(props: any) {
         setCarouselIndex(0);
     }
 
-
     return (
         <>
             <div id="image-carousel">
@@ -81,7 +87,9 @@ export default function ImageCarousel(props: any) {
                     createPortal(
                         <ImageModal
                             imageArray={imageArray}
+                            carouselIndex={carouselIndex}
                             onClose={handleCloseModal}
+                            handleButtonClick={handleButtonClick}
                         />,
                         document.body
                     )}
@@ -91,8 +99,8 @@ export default function ImageCarousel(props: any) {
                     onClick={handleCloseModal}
                 /> */}
                 <>
-                    <img src={imageArray[carouselIndex]?.url ? selectedImage === 1 ? imageArray[carouselIndex]?.url : imageArray[carouselIndex + 1]?.url : imageError} alt={selectedImage === 1 ? imageArray[carouselIndex]?.url : imageArray[carouselIndex + 1]?.alt} ref={firstImage} />
-                    <img src={imageArray[carouselIndex]?.url ? selectedImage === 2 ? imageArray[carouselIndex]?.url : imageArray[carouselIndex + 1]?.url : imageError} alt={selectedImage === 2 ? imageArray[carouselIndex]?.url : imageArray[carouselIndex + 1]?.alt} hidden ref={secondImage} />
+                    <img src={imageArray[carouselIndex]?.url ? selectedImage === 1 ? imageArray[carouselIndex]?.url : imageArray[carouselIndex + 1]?.url : imageError} alt={selectedImage === 1 ? imageArray[carouselIndex]?.url : imageArray[carouselIndex + 1]?.alt} ref={firstImage} onClick={handleCloseModal} />
+                    <img src={imageArray[carouselIndex]?.url ? selectedImage === 2 ? imageArray[carouselIndex]?.url : imageArray[carouselIndex + 1]?.url : imageError} alt={selectedImage === 2 ? imageArray[carouselIndex]?.url : imageArray[carouselIndex + 1]?.alt} hidden ref={secondImage} onClick={handleCloseModal} />
                 </>
                 <button
                     value="left"
