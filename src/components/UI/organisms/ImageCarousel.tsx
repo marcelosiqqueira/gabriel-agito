@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import ImageModal from "./ImageModal/ImageModal";
 import { basePhotoUrl } from "../../../const/const";
@@ -11,7 +11,10 @@ export default function ImageCarousel(props: any) {
     const [carouselIndex, setCarouselIndex] = useState(0);
     const [imageArray, setImageArray] = useState<ImageInfo[]>([]);
     const [showModal, setShowModal] = useState(false);
-    const [imageTeste, setImageTeste] = useState<string | undefined>();
+    const [selectedImage, setSelectedImage] = useState(1)
+
+    const firstImage = useRef<HTMLImageElement>(null)
+    const secondImage = useRef<HTMLImageElement>(null)
 
     useEffect(() => {
         props.selectedEventUrl
@@ -20,14 +23,36 @@ export default function ImageCarousel(props: any) {
     }, [props.selectedEventUrl]);
 
     function handleButtonClick(e: any) {
-        if (e.target.value === "left" && carouselIndex != 0)
+        if (e.target.value === "left" && carouselIndex != 0) {
             setCarouselIndex(carouselIndex - 1);
+            if (selectedImage === 1) {
+                firstImage.current?.toggleAttribute('hidden')
+                secondImage.current?.toggleAttribute('hidden')
+                setSelectedImage(2)
+            }
+            else {
+                firstImage.current?.toggleAttribute('hidden')
+                secondImage.current?.toggleAttribute('hidden')
+                setSelectedImage(1)
+            }
+        }
 
         if (
             e.target.value === "right" &&
             carouselIndex != imageArray.length - 1
-        )
+        ) {
             setCarouselIndex(carouselIndex + 1);
+            if (selectedImage === 1) {
+                firstImage.current?.toggleAttribute('hidden')
+                secondImage.current?.toggleAttribute('hidden')
+                setSelectedImage(2)
+            }
+            else {
+                firstImage.current?.toggleAttribute('hidden')
+                secondImage.current?.toggleAttribute('hidden')
+                setSelectedImage(1)
+            }
+        }
     }
 
     function handleCloseModal() {
@@ -60,11 +85,15 @@ export default function ImageCarousel(props: any) {
                         />,
                         document.body
                     )}
-                <img
+                {/* <img
                     src={imageArray[carouselIndex]?.url ?? imageError}
                     alt={imageArray[carouselIndex]?.alt}
                     onClick={handleCloseModal}
-                />
+                /> */}
+                <>
+                    <img src={imageArray[carouselIndex]?.url ? selectedImage === 1 ? imageArray[carouselIndex]?.url : imageArray[carouselIndex + 1]?.url : imageError} alt={selectedImage === 1 ? imageArray[carouselIndex]?.url : imageArray[carouselIndex + 1]?.alt} ref={firstImage} />
+                    <img src={imageArray[carouselIndex]?.url ? selectedImage === 2 ? imageArray[carouselIndex]?.url : imageArray[carouselIndex + 1]?.url : imageError} alt={selectedImage === 2 ? imageArray[carouselIndex]?.url : imageArray[carouselIndex + 1]?.alt} hidden ref={secondImage} />
+                </>
                 <button
                     value="left"
                     className="button-carousel-left"
