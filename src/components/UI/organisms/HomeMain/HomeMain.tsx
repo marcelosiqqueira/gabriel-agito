@@ -4,8 +4,9 @@ export default function HomeMain({ children }: any) {
   return (
     <section id='home'>
       <div className='home-description'>
-        <h2>Nome do evento</h2>
+        
         <div className='home-info'>
+          <h2>Nome do evento</h2>
           {/* <span>Data: </span> */}
           {/* <span>??/??/??</span> */}
           <br />

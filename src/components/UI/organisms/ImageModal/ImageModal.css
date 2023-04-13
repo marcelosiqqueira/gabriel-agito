@@ -13,7 +13,10 @@
 #imageModal img {
   margin: 0 auto;
   max-width: 100vw;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
 }
+
 
 #imageModal > button:first-of-type {
   position: absolute;
@@ -39,10 +42,6 @@
 
 /* CSS Mobile (portrait) */
 @media only screen and (max-width: 480px) {
-  #imageModal img {
-    aspect-ratio: 3 / 2;
-    object-fit: contain;
-  }
 
   #imageModal > button:first-of-type {
     width: 30px;

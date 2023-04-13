@@ -133,10 +133,40 @@
 @media only screen and (max-width: 767px) {
 
 }
+
+/* CSS Tablets (portrait) */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+
+    #events {
+        padding: 0;
+    }
+
+    .events-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    #image-carousel {
+        width: 100vw;
+        height: 350px;
+    }
+
+    #image-carousel img {
+        height: 320px;
+        max-width: 100%;
+    }
+
+    .events-container2 {
+        margin: 30px 100px;
+        height: 900px;
+    }
+}
+
 /* CSS Desktop*/
-
-@media only screen and (min-width: 1280px) {
-
+@media only screen and (min-width: 1280px) { 
+    
     #events {
         width: 100vw;
         display: flex;

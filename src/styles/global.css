@@ -33,3 +33,7 @@ body {
     background-color: var(--unfocused-gray);
     color: rgba(44, 0, 99, 0.7);
 }
+
+.focused {
+    background-color: var(--elements-white);
+}

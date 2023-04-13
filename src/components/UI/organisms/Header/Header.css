@@ -5,7 +5,7 @@ header {
 }
 
 /* CSS Mobile (portrait) */
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 1024px) {
     header {
         position: fixed;
         z-index: 1;
